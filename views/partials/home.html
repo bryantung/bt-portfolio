@@ -1,5 +1,8 @@
 <section class="home-hero">
     <div class="hero-content">
+        <div class="profile-photo-container">
+            <img src="assets/profile.png" alt="Bryan Tung" class="profile-photo">
+        </div>
         <h1>Hi, I'm <span class="highlight">Bryan Tung</span>.</h1>
         <p class="subtitle">Software Engineer | Tech Lead</p>
         <p class="bio">
@@ -8,10 +11,10 @@
             and building scalable applications with diverse programming skills.
         </p>
         <div class="cta-group">
-            <button class="btn primary" hx-get="/experiences" hx-target="#main-content" hx-push-url="true"
-                hx-swap="innerHTML transition:true">View My Work</button>
-            <button class="btn secondary" hx-get="/contact" hx-target="#main-content" hx-push-url="true"
-                hx-swap="innerHTML transition:true">Contact Me</button>
+            <button class="btn primary" hx-get="experiences.html" hx-target="#main-content" hx-select="#main-content"
+                hx-push-url="true" hx-swap="innerHTML transition:true">View My Work</button>
+            <button class="btn secondary" hx-get="contact.html" hx-target="#main-content" hx-select="#main-content"
+                hx-push-url="true" hx-swap="innerHTML transition:true">Contact Me</button>
         </div>
     </div>
 </section>
