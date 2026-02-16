@@ -34,6 +34,35 @@
     --blob-color-3: rgba(236, 72, 153, 0.4);
 }
 
+/* Winamp Classic Skin Theme */
+[data-theme="winamp"] {
+    /* Main colors from classic Winamp */
+    --bg-color: #232323;
+    --card-bg: #2a2a2a;
+    --text-primary: #00E100;
+    /* Classic Winamp LED green */
+    --text-secondary: #63ce63;
+    --accent-color: #0099CC;
+    /* Teal/blue highlight like playlist selection */
+    --accent-glow: rgba(0, 153, 204, 0.4);
+    --border-color: #3a3a3a;
+    --nav-glass: #1e1e1e;
+    --font-main: 'VT323', monospace;
+
+    /* Hide liquid blobs in Winamp mode */
+    --blob-color-1: transparent;
+    --blob-color-2: transparent;
+    --blob-color-3: transparent;
+
+    /* Winamp-specific variables - metallic beveled look */
+    --winamp-border-light: #5c5c5c;
+    --winamp-border-dark: #151515;
+    --winamp-title-bg: linear-gradient(180deg, #3a3a6a 0%, #232346 50%, #1a1a3a 100%);
+    --winamp-button-bg: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 50%, #2a2a2a 100%);
+    --winamp-display-bg: #000000;
+    --winamp-inset-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.7), inset -1px -1px 1px rgba(100, 100, 100, 0.15);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -384,12 +413,221 @@ ul {
     border: 1px solid var(--border-color);
 }
 
-.btn.secondary:hover {
-    border-color: var(--text-primary);
-    background: rgba(255, 255, 255, 0.05);
+/* --- Home Sections Toggle --- */
+.winamp-view {
+    display: none;
 }
 
-/* --- Timeline (Experiences) --- */
+.default-view {
+    display: flex;
+    /* home-hero was flex */
+}
+
+[data-theme="winamp"] .winamp-view {
+    display: flex;
+}
+
+[data-theme="winamp"] .default-view {
+    display: none;
+}
+
+/* --- Winamp Album Cover --- */
+.home-album-cover {
+    min-height: 70vh;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+}
+
+.album-jewel-case {
+    display: flex;
+    background: #000;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow:
+        10px 10px 30px rgba(0, 0, 0, 0.5),
+        inset 1px 1px 2px rgba(255, 255, 255, 0.2);
+    position: relative;
+    max-width: 800px;
+    width: 100%;
+    gap: 2rem;
+    align-items: center;
+    border: 1px solid #333;
+}
+
+/* Glass shine on jewel case */
+.album-jewel-case::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0) 60%, rgba(255, 255, 255, 0.05) 100%);
+    pointer-events: none;
+    border-radius: 4px;
+    z-index: 10;
+}
+
+.album-spine {
+    width: 15px;
+    height: 100%;
+    background: #111;
+    border-right: 2px solid #333;
+}
+
+.album-cover-art {
+    width: 350px;
+    height: 350px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #222;
+}
+
+.cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.2) sepia(0.2);
+    /* Slight retro feel */
+}
+
+.parental-advisory {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: #fff;
+    color: #000;
+    padding: 4px 6px;
+    border: 2px solid #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Impact, sans-serif;
+    line-height: 1;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.parental-advisory span {
+    display: block;
+}
+
+.parental-advisory .small {
+    font-size: 8px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    margin-top: 2px;
+}
+
+.album-info-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 2rem;
+    text-align: left;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    /* Clean sleeve font */
+}
+
+/* Override font for Album Title to match Winamp aesthetics if desired, or keep generic bold */
+.band-name {
+    font-size: 2rem;
+    color: #888;
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+.album-title {
+    font-size: 3.5rem;
+    color: #fff;
+    font-weight: 900;
+    line-height: 0.9;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
+.album-meta {
+    display: flex;
+    gap: 1rem;
+    color: #666;
+    font-size: 0.8rem;
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+}
+
+.play-album-btn {
+    align-self: flex-start;
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    padding: 0.8rem 2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.play-album-btn:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* Mobile Album */
+@media (max-width: 768px) {
+    .album-jewel-case {
+        flex-direction: column;
+        gap: 1rem;
+        padding-bottom: 2rem;
+    }
+
+    .album-info-side {
+        padding-right: 0;
+        text-align: center;
+        align-items: center;
+    }
+
+    .play-album-btn {
+        align-self: center;
+    }
+
+    .album-cover-art {
+        width: 250px;
+        height: 250px;
+    }
+
+    .band-name {
+        font-size: 1.5rem;
+    }
+
+    .album-title {
+        font-size: 2.5rem;
+    }
+}
+
+/* --- Experience Toggles --- */
+.experience-playlist {
+    display: none;
+}
+
+.experience-timeline {
+    display: block;
+}
+
+[data-theme="winamp"] .experience-playlist {
+    display: block;
+}
+
+[data-theme="winamp"] .experience-timeline {
+    display: none;
+}
+
+/* --- Timeline (Experiences - Default/Light) --- */
 .timeline {
     position: relative;
     padding-left: 2rem;
@@ -448,6 +686,211 @@ ul {
     border-radius: 20px;
     border: 1px solid var(--border-color);
     color: var(--text-secondary);
+}
+
+/* --- Playlist (Experiences - Winamp) --- */
+.playlist-container {
+    width: 100%;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+}
+
+.playlist-header {
+    display: grid;
+    grid-template-columns: 40px 2fr 1.5fr 1fr 60px;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.track-row {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border-radius: 6px;
+}
+
+.track-row:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.track-row.playing {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.track-row.playing .song-title {
+    color: var(--accent-color);
+}
+
+.track-row.playing .play-icon {
+    display: block;
+    color: var(--accent-color);
+}
+
+.track-row.playing .track-num {
+    display: none;
+}
+
+.track-main {
+    display: grid;
+    grid-template-columns: 40px 2fr 1.5fr 1fr 60px;
+    padding: 0.8rem 1rem;
+    align-items: center;
+}
+
+/* Columns */
+.col-play {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.play-icon {
+    display: none;
+    font-size: 0.8rem;
+}
+
+.track-row:hover .track-num {
+    display: none;
+}
+
+.track-row:hover .play-icon {
+    display: block;
+}
+
+.col-title {
+    color: var(--text-primary);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.explicit-badge {
+    font-size: 0.6rem;
+    border: 1px solid var(--text-secondary);
+    color: var(--text-secondary);
+    padding: 0 4px;
+    border-radius: 2px;
+    height: 14px;
+    line-height: 12px;
+}
+
+.col-artist,
+.col-album {
+    color: var(--text-secondary);
+}
+
+.col-duration {
+    text-align: right;
+    color: var(--text-secondary);
+    font-variant-numeric: tabular-nums;
+}
+
+/* Lyrics (Details) */
+.track-lyrics {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.track-row.playing .track-lyrics {
+    max-height: 800px;
+    /* Arbitrary large height */
+}
+
+.lyrics-content {
+    padding: 1.5rem 2rem 2rem 60px;
+    /* Indent to align with Title */
+}
+
+.lyrics-intro {
+    font-style: italic;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    opacity: 0.9;
+}
+
+.lyrics-lines {
+    list-style: none;
+    margin-bottom: 1.5rem;
+}
+
+.lyrics-lines li {
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.lyrics-lines li::before {
+    content: '♪';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-size: 0.8rem;
+    top: 2px;
+}
+
+.track-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.track-tags span {
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.track-tags span:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Playlist */
+@media (max-width: 768px) {
+
+    .playlist-header,
+    .track-main {
+        grid-template-columns: 30px 1fr 60px;
+        /* Hide Artist/Album on mobile */
+    }
+
+    .col-artist,
+    .col-album,
+    .playlist-header .col-artist,
+    .playlist-header .col-album {
+        display: none;
+    }
+
+    .col-title {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2rem;
+    }
+
+    /* Show artist name smaller under title on mobile if needed, or just hide */
+    .song-title::after {
+        content: attr(data-artist);
+        /* Advanced: could inject artist via attribute */
+        display: block;
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+        font-weight: 400;
+    }
+
+    .lyrics-content {
+        padding: 1rem;
+    }
 }
 
 /* --- Cards (Education) --- */
@@ -622,6 +1065,296 @@ ul {
 
 .career-story-btn {
     font-size: 0.9rem;
+}
+
+/* === Winamp Mode Overrides === */
+[data-theme="winamp"] .card,
+[data-theme="winamp"] .stack-item {
+    border-radius: 4px;
+    border: 2px solid;
+    border-color: var(--winamp-border-light) var(--winamp-border-dark) var(--winamp-border-dark) var(--winamp-border-light);
+    box-shadow: var(--winamp-inset-shadow);
+    backdrop-filter: none;
+}
+
+/* === Winamp Mode Overrides === */
+/* Header - Main Window Title Bar Look */
+[data-theme="winamp"] .main-header {
+    border-radius: 0;
+    background: var(--winamp-title-bg);
+    border: 2px solid;
+    border-color: var(--winamp-border-light) var(--winamp-border-dark) var(--winamp-border-dark) var(--winamp-border-light);
+    height: auto;
+    padding: 0.5rem 1rem;
+    position: relative;
+    /* Add "stripes" pattern for draggable area feel if desired, but gradient is classic */
+}
+
+/* Logo - Title Bar Text */
+[data-theme="winamp"] .logo {
+    color: #ffffff;
+    text-shadow: none;
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    /* Icon to left of text */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+[data-theme="winamp"] .logo::before {
+    content: '⚡';
+    /* Simple icon or maybe a diamond shape */
+    color: #d2d2d2;
+}
+
+/* Nav - Make it look like the menu bar under title or integrated */
+[data-theme="winamp"] .nav-content {
+    background: transparent;
+    backdrop-filter: none;
+}
+
+[data-theme="winamp"] .main-nav ul {
+    background: transparent;
+    padding: 0;
+}
+
+[data-theme="winamp"] .main-nav a {
+    color: #ffd700;
+    /* Gold/Yellow font for menu items often seen */
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    padding: 2px 6px;
+}
+
+[data-theme="winamp"] .main-nav a:hover,
+[data-theme="winamp"] .main-nav a.active {
+    background: #000080;
+    /* Navy blue selection background */
+    color: #ffffff;
+    box-shadow: none;
+}
+
+[data-theme="winamp"] .main-nav a.active::after {
+    display: none;
+}
+
+/* Buttons - Playback Controls (Silver/Metallic) */
+[data-theme="winamp"] .btn {
+    border-radius: 50%;
+    /* Play/Pause often round or rounded icons, but standard buttons are rectangular */
+    border-radius: 3px;
+    border: 1px solid;
+    border-color: #f2f2f2 #505050 #505050 #f2f2f2;
+    /* Outset silver */
+    background: linear-gradient(180deg, #d8d8d8 0%, #c0c0c0 50%, #a0a0a0 100%);
+    color: #000000;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    box-shadow: inset 1px 1px 0 #ffffff, 1px 1px 2px rgba(0, 0, 0, 0.5);
+    /* Mimic "CUE", "PLAY" buttons */
+    min-width: 0;
+    padding: 0.4rem 1rem;
+}
+
+[data-theme="winamp"] .btn:hover {
+    background: linear-gradient(180deg, #e8e8e8 0%, #d0d0d0 50%, #b0b0b0 100%);
+}
+
+[data-theme="winamp"] .btn:active {
+    border-color: #505050 #f2f2f2 #f2f2f2 #505050;
+    /* Inset on press */
+    background: linear-gradient(180deg, #a0a0a0 0%, #c0c0c0 50%, #d8d8d8 100%);
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.5);
+    transform: translateY(1px);
+}
+
+[data-theme="winamp"] .btn.primary {
+    /* Primary isn't green anymore, it's just a playback button */
+    background: linear-gradient(180deg, #d8d8d8 0%, #c0c0c0 50%, #a0a0a0 100%);
+    color: #000000;
+}
+
+/* EQ Slider Look for Timeline */
+[data-theme="winamp"] .timeline {
+    border-left: none;
+    /* Remove base theme line */
+    padding-left: 0;
+}
+
+[data-theme="winamp"] .timeline-item {
+    padding-left: 50px;
+    /* Space for the slider */
+    position: relative;
+    border-left: none;
+    margin-bottom: 2rem;
+}
+
+[data-theme="winamp"] .timeline-item::before {
+    /* Track Slot */
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 5px;
+    bottom: 5px;
+    /* Span full height minus spacing */
+    width: 8px;
+    /* Slightly wider track */
+    background: #000000;
+    border: 1px solid #808080;
+    border-right-color: #ffffff;
+    border-bottom-color: #ffffff;
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.8);
+    border-radius: 0;
+    /* Override base roundness */
+    transform: none;
+    /* Remove base translateX */
+}
+
+[data-theme="winamp"] .timeline-item::after {
+    /* Fader Knob */
+    content: '';
+    position: absolute;
+    left: 17px;
+    /* Centered on 20px+8px track: 20 + 4 - 7 = 17 */
+    top: 25px;
+    /* Adjustable vertical position */
+    width: 14px;
+    height: 24px;
+    /* Taller fader knob */
+    background: linear-gradient(180deg, #c0c0c0 0%, #808080 100%);
+    /* Metallic gradient */
+    border: 1px solid #ffffff;
+    border-right-color: #404040;
+    border-bottom-color: #404040;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+    border-radius: 2px;
+}
+
+[data-theme="winamp"] .timeline-item:hover::after {
+    background: linear-gradient(180deg, #e0e0e0 0%, #a0a0a0 100%);
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+    /* Glowing knob on hover */
+}
+
+/* Playlist Editor Look for Cards */
+[data-theme="winamp"] .card,
+[data-theme="winamp"] .stack-item {
+    background: #000000;
+    border: none;
+    /* Playlist usually inside main window, but standalone cards need frame? */
+    /* Let's give them a thin frame or just black bg */
+    border: 1px solid #4a4a4b;
+    border-radius: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    padding: 1rem;
+}
+
+[data-theme="winamp"] .card h3,
+[data-theme="winamp"] .stack-category h3 {
+    color: #00E100;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+[data-theme="winamp"] .card .institution {
+    color: #00E100;
+    opacity: 0.7;
+}
+
+[data-theme="winamp"] .card .year {
+    color: #0099CC;
+    /* Teal/Blue */
+    font-weight: bold;
+}
+
+[data-theme="winamp"] .card p,
+[data-theme="winamp"] .stack-item {
+    color: #00E100;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+/* Old placeholder block removed */
+
+[data-theme="winamp"] .section-title::after {
+    background: var(--accent-color);
+    height: 3px;
+}
+
+[data-theme="winamp"] .hero-content h1,
+[data-theme="winamp"] .section-title {
+    text-shadow: 0 0 8px var(--text-primary), 0 0 15px rgba(0, 225, 0, 0.3);
+}
+
+/* Winamp display-style backgrounds */
+[data-theme="winamp"] .home-hero {
+    background: var(--winamp-display-bg);
+    border: 2px solid;
+    border-color: var(--winamp-border-dark) var(--winamp-border-light) var(--winamp-border-light) var(--winamp-border-dark);
+    border-radius: 4px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+[data-theme="winamp"] .profile-photo {
+    border-radius: 0;
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+[data-theme="winamp"] .timeline-item::before {
+    border-color: var(--accent-color);
+    background: var(--winamp-display-bg);
+}
+
+[data-theme="winamp"] .main-nav a.active {
+    background: var(--accent-color);
+    color: #000000;
+    padding: 0.3rem 0.6rem;
+}
+
+[data-theme="winamp"] .main-nav a.active::after {
+    display: none;
+}
+
+/* Theme Selector Dropdown */
+.theme-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.theme-selector select {
+    background: var(--card-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-family: var(--font-main);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.theme-selector select:hover {
+    border-color: var(--accent-color);
+}
+
+.theme-selector select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+[data-theme="winamp"] .theme-selector select {
+    border-radius: 2px;
+    border: 2px solid;
+    border-color: var(--winamp-border-light) var(--winamp-border-dark) var(--winamp-border-dark) var(--winamp-border-light);
 }
 
 /* Responsive */

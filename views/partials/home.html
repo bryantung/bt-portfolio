@@ -1,4 +1,5 @@
-<section class="home-hero">
+<!-- DEFAULT HERO (Light/Dark) -->
+<section class="home-hero default-view">
     <div class="hero-content">
         <div class="profile-photo-container">
             <img src="assets/profile.png" alt="Bryan Tung" class="profile-photo">
@@ -15,6 +16,40 @@
                 hx-push-url="true" hx-swap="innerHTML transition:true">View My Work</button>
             <button class="btn secondary" hx-get="contact.html" hx-target="#main-content" hx-select="#main-content"
                 hx-push-url="true" hx-swap="innerHTML transition:true">Contact Me</button>
+        </div>
+    </div>
+</section>
+
+<!-- WINAMP ALBUM COVER -->
+<section class="home-album-cover winamp-view">
+    <div class="album-art-container">
+        <div class="album-jewel-case">
+            <div class="album-spine"></div>
+            <div class="album-cover-art">
+                <img src="assets/profile.png" alt="Bryan Tung - The Portfolio" class="cover-image">
+                <div class="parental-advisory">
+                    <span>PARENTAL</span>
+                    <span>ADVISORY</span>
+                    <span class="small">EXPLICIT CODE</span>
+                </div>
+                <div class="album-overlay"></div>
+            </div>
+            <div class="album-info-side">
+                <h2 class="band-name">BRYAN TUNG</h2>
+                <h1 class="album-title">THE PORTFOLIO</h1>
+                <div class="album-meta">
+                    <span>EST. 2013</span>
+                    <span>•</span>
+                    <span>STEREO SOUND</span>
+                    <span>•</span>
+                    <span>FULL STACK</span>
+                </div>
+                <!-- Play button acts as CTA -->
+                <button class="play-album-btn" hx-get="experiences.html" hx-target="#main-content"
+                    hx-select="#main-content" hx-push-url="true" hx-swap="innerHTML transition:true">
+                    <span>▶ PLAY</span>
+                </button>
+            </div>
         </div>
     </div>
 </section>
