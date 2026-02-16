@@ -95,7 +95,21 @@
     <script>
         // Theme Selector Logic
         const themeSelector = document.getElementById('theme-selector');
-        const savedTheme = localStorage.getItem('theme') || 'dark';
+
+        // Check for theme in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlTheme = urlParams.get('theme');
+        const validThemes = ['dark', 'light', 'winamp'];
+
+        // Determine theme: URL > LocalStorage > Default
+        let savedTheme = localStorage.getItem('theme') || 'dark';
+        if (urlTheme && validThemes.includes(urlTheme)) {
+            savedTheme = urlTheme;
+            localStorage.setItem('theme', savedTheme);
+            // Optional: Clean URL
+            const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+            window.history.replaceState({ path: newUrl }, '', newUrl);
+        }
 
         // Set initial theme
         document.documentElement.setAttribute('data-theme', savedTheme);
