@@ -379,9 +379,14 @@ ul {
 
 .bio {
     color: var(--text-secondary);
-    max-width: 600px;
-    margin: 0 auto 2.5rem;
+    max-width: 720px;
+    margin: 0 auto 1.5rem;
     font-size: 1.1rem;
+}
+
+.bio-cta {
+    display: block;
+    margin-top: 0.75rem;
 }
 
 .cta-group {
@@ -1551,11 +1556,43 @@ ul {
     }
 
     #main-content {
-        padding: 2rem 1rem;
+        display: flex;
+        padding: 1.25rem 1rem;
+    }
+
+    .home-hero {
+        flex: 1;
+        min-height: 0;
+    }
+
+    .profile-photo-container {
+        margin-bottom: 0.75rem;
+    }
+
+    .profile-photo {
+        width: 120px;
+        height: 120px;
     }
 
     .hero-content h1 {
-        font-size: 2.5rem;
+        font-size: 2.25rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+        font-size: 1.25rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .bio {
+        max-width: 38rem;
+        margin-bottom: 1.25rem;
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    .btn {
+        padding: 0.7rem 1.5rem;
     }
 
     .grid-layout {
@@ -1572,8 +1609,34 @@ ul {
 }
 
 @media (width <= 480px) {
+    #main-content {
+        padding: 1rem 0.75rem 1.25rem;
+    }
+
+    .profile-photo {
+        width: 96px;
+        height: 96px;
+    }
+
     .hero-content h1 {
-        font-size: 2rem;
+        font-size: 1.75rem;
+    }
+
+    .subtitle {
+        font-size: 1.1rem;
+    }
+
+    .bio {
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+
+    .cta-group {
+        gap: 0.75rem;
+    }
+
+    .btn {
+        padding: 0.65rem 1.1rem;
     }
 
     .main-nav ul {
