@@ -7,15 +7,20 @@
       "playlistCompany": "Zurich Edge",
       "category": "Modernization",
       "playlistDuration": "Present",
-      "summary": "Spearheading technology direction and modernization.",
+      "summary": "Delivering insurance products embedded within customer journeys across APAC.",
       "highlights": [
+        "Assumed Tech Lead responsibilities, planning, designing, and spearheading the web team's technology direction.",
+        "Led frontend architecture initiatives, designing and standardizing shared utilities and reusable components across projects.",
         "Rebuilt legacy codebases with modern standards within 6 months.",
-        "Led migration from BitBucket/Bamboo to GitHub/GitHub Actions.",
-        "Executed Next.js upgrades (v12 to v15) to future-proof applications.",
-        "Implemented \"whitelabel first\" approach for fast prototyping.",
-        "Managed application governance via SonarQube, Prisma Cloud, and Veracode."
+        "Designed and automated CI/CD pipelines, migrating from Bitbucket/Bamboo to GitHub/GitHub Actions.",
+        "Planned and coordinated Next.js upgrades from versions 12, 13, and 14 to 15, improving application maintainability and future readiness.",
+        "Established a whitelabel-first approach to enable faster prototyping and partner go-live.",
+        "Leveraged AWS services including Lambda, DynamoDB, ECS, RUM, Redis, and Secrets Manager for serverless application development, monitoring, caching, runtime configuration, and secret management.",
+        "Delivered web application projects across Japan, Indonesia, Singapore, and Australia, covering multiple insurance products.",
+        "Applied application governance and security practices using SonarQube, Prisma Cloud, and Veracode.",
+        "Adopted AI-assisted development workflows using Claude Code and GitHub Copilot for planning, implementation, refactoring, debugging, and code review."
       ],
-      "technologies": ["Next.js", "Redux", "GitHub Actions", "AWS", "Redis"]
+      "technologies": ["Next.js", "React.js", "Redux", "Node.js", "TypeScript", "JavaScript", "GitHub Actions", "Git", "AWS", "AWS Lambda", "DynamoDB", "ECS", "Redis", "Claude Code", "GitHub Copilot"]
     },
     {
       "date": "Mar 2021 – Dec 2022",
@@ -23,14 +28,17 @@
       "company": "Strands Labs Sdn. Bhd.",
       "playlistCompany": "Strands Labs",
       "category": "Leadership",
-      "playlistDuration": "1y 9m",
-      "summary": "Technical responsibility for project delivery and team mentorship.",
+      "playlistDuration": "1y 10m",
+      "summary": "Owned technical delivery and implementation for remote FinTech projects.",
       "highlights": [
-        "Led remote overseas project go-live within 6 months.",
-        "Managed 2 projects simultaneously with a team of 2–5 engineers.",
-        "Delivered performance-critical fixes and value-added features."
+        "Took ownership of technical responsibilities across project delivery and technical implementation.",
+        "Delivered an overseas project fully remotely within 6 months.",
+        "Managed 2 projects simultaneously, coordinating technical delivery, priorities, and project requirements.",
+        "Acquired working knowledge of Java, PostgreSQL, and GCP to support technical analysis and project delivery.",
+        "Mentored and managed teams of 2-5 engineers, ensuring projects were delivered on schedule and to required standards.",
+        "Collaborated with other Tech Leads to deliver performance-critical fixes and value-added features to the core product."
       ],
-      "technologies": ["React.js", "Java", "PostgreSQL", "GCP", "Docker"]
+      "technologies": ["React.js", "Java", "PostgreSQL", "GCP", "GKE", "Docker"]
     },
     {
       "date": "Jun 2017 – Dec 2022",
@@ -39,13 +47,16 @@
       "playlistCompany": "Strands Labs",
       "category": "FinTech",
       "playlistDuration": "5y 6m",
-      "summary": "FinTech industry project delivery and processes.",
+      "summary": "Delivered time-critical frontend projects and development processes in the FinTech industry.",
       "highlights": [
-        "Setup Git-flow and SemVer compliant delivery processes.",
-        "Led a team of 2–4 frontend engineers for time-critical projects.",
-        "Delivered 4+ frontend customization projects with high satisfaction."
+        "Worked as part of a project delivery team within the FinTech industry.",
+        "Designed and automated software delivery workflows using Git-flow and SemVer-compliant processes.",
+        "Led teams of 2-4 frontend engineers in delivering time-critical projects.",
+        "Guided frontend troubleshooting, technical analysis, and requirements gathering with clients.",
+        "Delivered 4+ frontend customization projects on schedule and to a high standard.",
+        "Contributed technical and product improvement ideas that were incorporated into the core product."
       ],
-      "technologies": ["React.js", "Redux", "Webpack", "Jenkins", "Oracle DB"]
+      "technologies": ["React.js", "Redux", "JavaScript", "webpack", "Jenkins", "Git", "Docker", "Java", "PostgreSQL", "GCP", "GKE", "Oracle DB"]
     },
     {
       "date": "Mar 2013 – Mar 2017",
@@ -54,13 +65,15 @@
       "playlistCompany": "Positive Grid",
       "category": "Audio Tech",
       "playlistDuration": "4y",
-      "summary": "iOS developer and Frontend engineer for audio software.",
+      "summary": "Developed iOS applications and frontend software for audio plugin products.",
       "highlights": [
-        "Led POC to switch from AngularJS to ReactJS for realtime improvements.",
-        "Delivered 2 product series as a solo contributor.",
-        "Resolved critical performance issues in realtime graph rendering."
+        "Developed iOS applications and frontend software for audio plugin products.",
+        "Led a 3-month proof-of-concept (POC) to migrate from AngularJS to React.js to improve real-time performance.",
+        "Worked across multiple products and programming languages simultaneously.",
+        "Delivered 2 product series as a solo contributor, progressing from junior developer responsibilities.",
+        "Resolved critical real-time graph rendering performance issues across both the iOS view layer and WebKit."
       ],
-      "technologies": ["React.js", "AngularJS", "C/C++", "Objective-C/Swift", "Audio Graphs"]
+      "technologies": ["React.js", "AngularJS", "JavaScript", "C", "C++", "JUCE", "Gulp", "Objective-C", "Swift", "Audio Graphs", "MIDI", "MVC"]
     }
   ]
 }
