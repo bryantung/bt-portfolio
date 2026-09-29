@@ -40,3 +40,7 @@ The file is public portfolio content. Do not include secrets, private contact de
 2. Confirm `dist/experiences.html` contains each job in both `.timeline-item` and `.track-row` forms.
 3. Serve `dist/` and view `/experiences.html` in dark, light, and Winamp themes.
 4. Inspect `git diff` so generated or unrelated local files are not included.
+
+## Commit and push gate
+
+Before staging files for any user-requested commit or push, run `npm run lint` and `npm run build`. Fix task-relevant failures and rerun both checks before committing; if either check cannot pass, do not commit or push. Use a normal commit without `--no-verify`, stage only files in scope, and report any deliberately excluded changes.
