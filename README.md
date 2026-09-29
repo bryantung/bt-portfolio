@@ -27,6 +27,8 @@ bt-portfolio/
 ├── dist/            # Generated static files (created after build)
 ├── public/          # Static assets (CSS, JavaScript, Images)
 │   └── css/         # Contains styles.css with theming logic
+├── data/            # Editable structured content used by the build
+│   └── experiences.json
 ├── views/           # Application views
 │   ├── index.html   # Main layout template
 │   └── partials/    # Fragment HTML pages (e.g., home, experiences, contact)
@@ -69,6 +71,12 @@ The application utilizes CSS variables to manage themes. The site features three
 1. **Default/Dark (`:root`)**: Premium aesthetic with liquid floating blobs and glassmorphic UI.
 2. **Light (`[data-theme="light"]`)**: Clean, high-contrast, professional look.
 3. **Winamp (`[data-theme="winamp"]`)**: A nostalgic throwback UI that replaces the standard timeline with an interactive track playlist view and pixel-fonts.
+
+## ✍️ Updating work experience
+
+Work experience is maintained as structured JSON, not duplicated HTML. For local development, edit `data/experiences.json` and run `npm run build`.
+
+For the published GitHub Pages site, edit `data/experiences.json` directly in GitHub's file editor and commit the change to `main`. The deployment workflow runs automatically. The build validates the JSON and produces both the standard timeline and Winamp playlist from the same entries.
 
 ## 📜 License
 

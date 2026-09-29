@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const { renderExperiences } = require('./render-experiences');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -33,7 +34,10 @@ const routes = [
 
 routes.forEach(route => {
     app.get(route.path, (req, res) => {
-        const content = readView(route.partial);
+        let content = readView(route.partial);
+        if (route.partial === 'partials/experiences.html') {
+            content = renderExperiences(content);
+        }
 
         if (req.headers['hx-request']) {
             // If HTMX request, return only the partial

@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { renderExperiences } = require('./render-experiences');
 
 // Configuration
 const DIST_DIR = path.join(__dirname, 'dist');
@@ -55,6 +56,9 @@ pages.forEach(page => {
 
     if (fs.existsSync(partialPath)) {
         content = fs.readFileSync(partialPath, 'utf8');
+        if (page.partial === 'experiences.html') {
+            content = renderExperiences(content);
+        }
     } else {
         console.warn(`Warning: Partial ${page.partial} not found.`);
     }

@@ -1,0 +1,66 @@
+{
+  "experiences": [
+    {
+      "date": "Jan 2023 – Present",
+      "title": "Web Senior Developer",
+      "company": "Zurich Edge (Zurich Shared Services Malaysia/Zurich APAC)",
+      "playlistCompany": "Zurich Edge",
+      "category": "Modernization",
+      "playlistDuration": "Present",
+      "summary": "Spearheading technology direction and modernization.",
+      "highlights": [
+        "Rebuilt legacy codebases with modern standards within 6 months.",
+        "Led migration from BitBucket/Bamboo to GitHub/GitHub Actions.",
+        "Executed Next.js upgrades (v12 to v15) to future-proof applications.",
+        "Implemented \"whitelabel first\" approach for fast prototyping.",
+        "Managed application governance via SonarQube, Prisma Cloud, and Veracode."
+      ],
+      "technologies": ["Next.js", "Redux", "GitHub Actions", "AWS", "Redis"]
+    },
+    {
+      "date": "Mar 2021 – Dec 2022",
+      "title": "Project Tech Lead",
+      "company": "Strands Labs Sdn. Bhd.",
+      "playlistCompany": "Strands Labs",
+      "category": "Leadership",
+      "playlistDuration": "1y 9m",
+      "summary": "Technical responsibility for project delivery and team mentorship.",
+      "highlights": [
+        "Led remote overseas project go-live within 6 months.",
+        "Managed 2 projects simultaneously with a team of 2–5 engineers.",
+        "Delivered performance-critical fixes and value-added features."
+      ],
+      "technologies": ["React.js", "Java", "PostgreSQL", "GCP", "Docker"]
+    },
+    {
+      "date": "Jun 2017 – Dec 2022",
+      "title": "Senior Frontend Engineer",
+      "company": "Strands Labs Sdn. Bhd.",
+      "playlistCompany": "Strands Labs",
+      "category": "FinTech",
+      "playlistDuration": "5y 6m",
+      "summary": "FinTech industry project delivery and processes.",
+      "highlights": [
+        "Setup Git-flow and SemVer compliant delivery processes.",
+        "Led a team of 2–4 frontend engineers for time-critical projects.",
+        "Delivered 4+ frontend customization projects with high satisfaction."
+      ],
+      "technologies": ["React.js", "Redux", "Webpack", "Jenkins", "Oracle DB"]
+    },
+    {
+      "date": "Mar 2013 – Mar 2017",
+      "title": "Software Engineer",
+      "company": "Positive Grid Inc.",
+      "playlistCompany": "Positive Grid",
+      "category": "Audio Tech",
+      "playlistDuration": "4y",
+      "summary": "iOS developer and Frontend engineer for audio software.",
+      "highlights": [
+        "Led POC to switch from AngularJS to ReactJS for realtime improvements.",
+        "Delivered 2 product series as a solo contributor.",
+        "Resolved critical performance issues in realtime graph rendering."
+      ],
+      "technologies": ["React.js", "AngularJS", "C/C++", "Objective-C/Swift", "Audio Graphs"]
+    }
+  ]
+}
