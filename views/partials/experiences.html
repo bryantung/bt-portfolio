@@ -16,11 +16,19 @@
                 <div class="col-title">TITLE</div>
                 <div class="col-album">ALBUM</div>
                 <div class="col-genre">GENRE</div>
-                <div class="col-duration"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2">
+                <div class="col-duration">
+                    <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
                         <circle cx="12" cy="12" r="10"></circle>
                         <polyline points="12 6 12 12 16 14"></polyline>
-                    </svg></div>
+                    </svg>
+                </div>
             </div>
 
             <div class="playlist-tracks">
@@ -32,7 +40,7 @@
     <script>
         function toggleTrack(element) {
             const allTracks = document.querySelectorAll('.track-row');
-            allTracks.forEach(track => {
+            allTracks.forEach((track) => {
                 if (track !== element) {
                     track.classList.remove('playing');
                 }

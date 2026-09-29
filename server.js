@@ -20,7 +20,7 @@ const readView = (viewName) => {
 
 // Helper to render layout with content
 const renderLayout = (content, metadata) => {
-    let layout = readView('index.html');
+    const layout = readView('index.html');
     return layout
         .replace('<!-- SEO_METADATA -->', renderSeoMetadata(metadata))
         .replace('<!-- CONTENT_PLACEHOLDER -->', content);
@@ -29,13 +29,17 @@ const renderLayout = (content, metadata) => {
 // Routes
 const routes = [
     { path: '/', partial: 'partials/home.html', metadata: PAGE_METADATA.home },
-    { path: '/experiences', partial: 'partials/experiences.html', metadata: PAGE_METADATA.experiences },
+    {
+        path: '/experiences',
+        partial: 'partials/experiences.html',
+        metadata: PAGE_METADATA.experiences,
+    },
     { path: '/education', partial: 'partials/education.html', metadata: PAGE_METADATA.education },
     { path: '/tech-stack', partial: 'partials/tech-stack.html', metadata: PAGE_METADATA.techStack },
-    { path: '/contact', partial: 'partials/contact.html', metadata: PAGE_METADATA.contact }
+    { path: '/contact', partial: 'partials/contact.html', metadata: PAGE_METADATA.contact },
 ];
 
-routes.forEach(route => {
+routes.forEach((route) => {
     app.get(route.path, (req, res) => {
         let content = readView(route.partial);
         if (route.partial === 'partials/experiences.html') {

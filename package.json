@@ -1,18 +1,32 @@
 {
-  "name": "bt-portfolio",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prestart": "npm run build",
-    "start": "npx serve dist",
-    "build": "node build.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "express": "^5.2.1"
-  }
+    "name": "bt-portfolio",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "lint": "npm run lint:js && npm run lint:css && npm run format:check",
+        "lint:css": "stylelint \"public/css/**/*.css\"",
+        "lint:fix": "npm run lint:js -- --fix && npm run lint:css -- --fix && npm run format",
+        "lint:js": "eslint .",
+        "test": "npm run lint && node --test && npm run build",
+        "prestart": "npm run build",
+        "start": "npx serve dist",
+        "build": "node build.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "dependencies": {
+        "express": "^5.2.1"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.39.5",
+        "eslint": "^9.39.5",
+        "globals": "^16.5.0",
+        "prettier": "^3.9.9",
+        "stylelint": "^16.26.1",
+        "stylelint-config-standard": "^38.0.0"
+    }
 }

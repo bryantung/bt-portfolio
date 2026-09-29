@@ -1,180 +1,250 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- SEO_METADATA -->
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- SEO_METADATA -->
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=VT323&display=swap"
+            rel="stylesheet"
+        />
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=VT323&display=swap"
-        rel="stylesheet">
+        <!-- HTMX -->
+        <script
+            src="https://unpkg.com/htmx.org@1.9.10"
+            integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+            crossorigin="anonymous"
+        ></script>
 
-    <!-- HTMX -->
-    <script src="https://unpkg.com/htmx.org@1.9.10"
-        integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
-        crossorigin="anonymous"></script>
+        <!-- CSS -->
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-
-<body>
-    <div class="liquid-background">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
-    </div>
-    <div class="app-container">
-        <header class="main-header">
-            <div class="logo">BT Portfolio.</div>
-            <button class="hamburger" aria-label="Toggle Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <div class="nav-content">
-                <nav class="main-nav">
-                    <ul>
-                        <li><a href="index.html" hx-get="index.html" hx-target="#main-content" hx-select="#main-content"
-                                hx-push-url="true" hx-swap="innerHTML transition:true">Home</a></li>
-                        <li><a href="experiences.html" hx-get="experiences.html" hx-target="#main-content"
-                                hx-select="#main-content" hx-push-url="true"
-                                hx-swap="innerHTML transition:true">Experiences</a></li>
-                        <li><a href="education.html" hx-get="education.html" hx-target="#main-content"
-                                hx-select="#main-content" hx-push-url="true"
-                                hx-swap="innerHTML transition:true">Education</a></li>
-                        <li><a href="tech-stack.html" hx-get="tech-stack.html" hx-target="#main-content"
-                                hx-select="#main-content" hx-push-url="true" hx-swap="innerHTML transition:true">Tech
-                                Stack</a></li>
-                        <li><a href="contact.html" hx-get="contact.html" hx-target="#main-content"
-                                hx-select="#main-content" hx-push-url="true"
-                                hx-swap="innerHTML transition:true">Contact</a></li>
-                    </ul>
-                </nav>
-                <div class="social-links">
-                    <div class="theme-selector">
-                        <select id="theme-selector" aria-label="Select Theme">
-                            <option value="dark">🌙 Dark</option>
-                            <option value="light">☀️ Light</option>
-                            <option value="winamp">🎵 Winamp</option>
-                        </select>
+    <body>
+        <div class="liquid-background">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+        </div>
+        <div class="app-container">
+            <header class="main-header">
+                <div class="logo">BT Portfolio.</div>
+                <button class="hamburger" aria-label="Toggle Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="nav-content">
+                    <nav class="main-nav">
+                        <ul>
+                            <li>
+                                <a
+                                    href="index.html"
+                                    hx-get="index.html"
+                                    hx-target="#main-content"
+                                    hx-select="#main-content"
+                                    hx-push-url="true"
+                                    hx-swap="innerHTML transition:true"
+                                    >Home</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="experiences.html"
+                                    hx-get="experiences.html"
+                                    hx-target="#main-content"
+                                    hx-select="#main-content"
+                                    hx-push-url="true"
+                                    hx-swap="innerHTML transition:true"
+                                    >Experiences</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="education.html"
+                                    hx-get="education.html"
+                                    hx-target="#main-content"
+                                    hx-select="#main-content"
+                                    hx-push-url="true"
+                                    hx-swap="innerHTML transition:true"
+                                    >Education</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="tech-stack.html"
+                                    hx-get="tech-stack.html"
+                                    hx-target="#main-content"
+                                    hx-select="#main-content"
+                                    hx-push-url="true"
+                                    hx-swap="innerHTML transition:true"
+                                    >Tech Stack</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="contact.html"
+                                    hx-get="contact.html"
+                                    hx-target="#main-content"
+                                    hx-select="#main-content"
+                                    hx-push-url="true"
+                                    hx-swap="innerHTML transition:true"
+                                    >Contact</a
+                                >
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="social-links">
+                        <div class="theme-selector">
+                            <select id="theme-selector" aria-label="Select Theme">
+                                <option value="dark">🌙 Dark</option>
+                                <option value="light">☀️ Light</option>
+                                <option value="winamp">🎵 Winamp</option>
+                            </select>
+                        </div>
+                        <a href="https://github.com/bryantung" target="_blank" aria-label="GitHub">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <path
+                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                                ></path>
+                            </svg>
+                        </a>
+                        <a
+                            href="https://www.linkedin.com/in/bryantung"
+                            target="_blank"
+                            aria-label="LinkedIn"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                                ></path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
                     </div>
-                    <a href="https://github.com/bryantung" target="_blank" aria-label="GitHub">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                            </path>
-                        </svg>
-                    </a>
-                    <a href="https://www.linkedin.com/in/bryantung" target="_blank" aria-label="LinkedIn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
-                            </path>
-                            <rect x="2" y="9" width="4" height="12"></rect>
-                            <circle cx="4" cy="4" r="2"></circle>
-                        </svg>
-                    </a>
                 </div>
-            </div>
-        </header>
+            </header>
 
-        <main id="main-content">
-            <!-- CONTENT_PLACEHOLDER -->
-        </main>
+            <main id="main-content">
+                <!-- CONTENT_PLACEHOLDER -->
+            </main>
 
-        <footer class="main-footer">
-            <p>&copy; 2026 Bryan Tung</p>
-        </footer>
-    </div>
+            <footer class="main-footer">
+                <p>&copy; 2026 Bryan Tung</p>
+            </footer>
+        </div>
 
-    <script>
-        // Theme Selector Logic
-        const themeSelector = document.getElementById('theme-selector');
+        <script>
+            // Theme Selector Logic
+            const themeSelector = document.getElementById('theme-selector');
 
-        // Check for theme in URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const urlTheme = urlParams.get('theme');
-        const validThemes = ['dark', 'light', 'winamp'];
+            // Check for theme in URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlTheme = urlParams.get('theme');
+            const validThemes = ['dark', 'light', 'winamp'];
 
-        // Determine theme: URL > LocalStorage > Default
-        let savedTheme = localStorage.getItem('theme') || 'dark';
-        if (urlTheme && validThemes.includes(urlTheme)) {
-            savedTheme = urlTheme;
-            localStorage.setItem('theme', savedTheme);
-            // Optional: Clean URL
-            const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-            window.history.replaceState({ path: newUrl }, '', newUrl);
-        }
+            // Determine theme: URL > LocalStorage > Default
+            let savedTheme = localStorage.getItem('theme') || 'dark';
+            if (urlTheme && validThemes.includes(urlTheme)) {
+                savedTheme = urlTheme;
+                localStorage.setItem('theme', savedTheme);
+                // Optional: Clean URL
+                const newUrl =
+                    window.location.protocol +
+                    '//' +
+                    window.location.host +
+                    window.location.pathname;
+                window.history.replaceState({ path: newUrl }, '', newUrl);
+            }
 
-        // Set initial theme
-        document.documentElement.setAttribute('data-theme', savedTheme);
-        themeSelector.value = savedTheme;
+            // Set initial theme
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            themeSelector.value = savedTheme;
 
-        // Handle theme change
-        themeSelector.addEventListener('change', (e) => {
-            const newTheme = e.target.value;
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-        });
-
-        // Mobile Menu Logic
-        const hamburger = document.querySelector('.hamburger');
-        const navContent = document.querySelector('.nav-content');
-
-        if (hamburger && navContent) {
-            hamburger.addEventListener('click', () => {
-                hamburger.classList.toggle('active');
-                navContent.classList.toggle('active');
+            // Handle theme change
+            themeSelector.addEventListener('change', (e) => {
+                const newTheme = e.target.value;
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
             });
 
-            // Close menu when clicking a link
-            document.querySelectorAll('.main-nav a').forEach(link => {
-                link.addEventListener('click', () => {
-                    hamburger.classList.remove('active');
-                    navContent.classList.remove('active');
+            // Mobile Menu Logic
+            const hamburger = document.querySelector('.hamburger');
+            const navContent = document.querySelector('.nav-content');
+
+            if (hamburger && navContent) {
+                hamburger.addEventListener('click', () => {
+                    hamburger.classList.toggle('active');
+                    navContent.classList.toggle('active');
                 });
-            });
-        }
 
-        // Active Nav Highlighting
-        function updateActiveNav() {
-            let currentPath = window.location.pathname;
-            // Get just the filename
-            let filename = currentPath.split('/').pop() || 'index.html';
-            // Handle empty or root path
-            if (filename === '' || filename === '/') {
-                filename = 'index.html';
-            }
-            // Add .html extension if missing (server may strip it)
-            if (!filename.endsWith('.html')) {
-                filename = filename + '.html';
+                // Close menu when clicking a link
+                document.querySelectorAll('.main-nav a').forEach((link) => {
+                    link.addEventListener('click', () => {
+                        hamburger.classList.remove('active');
+                        navContent.classList.remove('active');
+                    });
+                });
             }
 
-            document.querySelectorAll('.main-nav a').forEach(link => {
-                const linkHref = link.getAttribute('href');
-                if (linkHref === filename) {
-                    link.classList.add('active');
-                } else {
-                    link.classList.remove('active');
+            // Active Nav Highlighting
+            function updateActiveNav() {
+                let currentPath = window.location.pathname;
+                // Get just the filename
+                let filename = currentPath.split('/').pop() || 'index.html';
+                // Handle empty or root path
+                if (filename === '' || filename === '/') {
+                    filename = 'index.html';
                 }
+                // Add .html extension if missing (server may strip it)
+                if (!filename.endsWith('.html')) {
+                    filename = filename + '.html';
+                }
+
+                document.querySelectorAll('.main-nav a').forEach((link) => {
+                    const linkHref = link.getAttribute('href');
+                    if (linkHref === filename) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            }
+
+            // Run on page load
+            updateActiveNav();
+
+            // Re-run after HTMX navigation (use pushedIntoHistory for correct URL)
+            document.body.addEventListener('htmx:pushedIntoHistory', updateActiveNav);
+            // Also listen for afterSwap as fallback
+            document.body.addEventListener('htmx:afterSwap', () => {
+                setTimeout(updateActiveNav, 50);
             });
-        }
-
-        // Run on page load
-        updateActiveNav();
-
-        // Re-run after HTMX navigation (use pushedIntoHistory for correct URL)
-        document.body.addEventListener('htmx:pushedIntoHistory', updateActiveNav);
-        // Also listen for afterSwap as fallback
-        document.body.addEventListener('htmx:afterSwap', () => {
-            setTimeout(updateActiveNav, 50);
-        });
-    </script>
-</body>
-
+        </script>
+    </body>
 </html>

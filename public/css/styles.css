@@ -1,14 +1,15 @@
 :root {
     /* Color Palette - Dark Premium (Default) */
     --bg-color: #0d1117;
-    --card-bg: rgba(22, 27, 34, 0.7);
+    --card-bg: rgb(22 27 34 / 70%);
+
     /* Translucent for glass effect */
     --text-primary: #f0f6fc;
     --text-secondary: #8b949e;
     --accent-color: #58a6ff;
-    --accent-glow: rgba(88, 166, 255, 0.15);
+    --accent-glow: rgb(88 166 255 / 15%);
     --border-color: #30363d;
-    --nav-glass: rgba(13, 17, 23, 0.85);
+    --nav-glass: rgb(13 17 23 / 85%);
 
     /* Typography */
     --font-main: 'Outfit', sans-serif;
@@ -19,32 +20,33 @@
     --blob-color-3: #ec4899;
 }
 
-[data-theme="light"] {
-    --bg-color: #ffffff;
-    --card-bg: rgba(255, 255, 255, 0.6);
+[data-theme='light'] {
+    --bg-color: #fff;
+    --card-bg: rgb(255 255 255 / 60%);
     --text-primary: #1f2328;
     --text-secondary: #424a53;
     --accent-color: #0969da;
-    --accent-glow: rgba(9, 105, 218, 0.15);
-    --border-color: rgba(0, 0, 0, 0.1);
-    --nav-glass: rgba(255, 255, 255, 0.7);
-
-    --blob-color-1: rgba(9, 105, 218, 0.4);
-    --blob-color-2: rgba(139, 92, 246, 0.4);
-    --blob-color-3: rgba(236, 72, 153, 0.4);
+    --accent-glow: rgb(9 105 218 / 15%);
+    --border-color: rgb(0 0 0 / 10%);
+    --nav-glass: rgb(255 255 255 / 70%);
+    --blob-color-1: rgb(9 105 218 / 40%);
+    --blob-color-2: rgb(139 92 246 / 40%);
+    --blob-color-3: rgb(236 72 153 / 40%);
 }
 
 /* Winamp Classic Skin Theme */
-[data-theme="winamp"] {
+[data-theme='winamp'] {
     /* Main colors from classic Winamp */
     --bg-color: #232323;
     --card-bg: #2a2a2a;
-    --text-primary: #00E100;
+    --text-primary: #00e100;
+
     /* Classic Winamp LED green */
     --text-secondary: #63ce63;
-    --accent-color: #0099CC;
+    --accent-color: #09c;
+
     /* Teal/blue highlight like playlist selection */
-    --accent-glow: rgba(0, 153, 204, 0.4);
+    --accent-glow: rgb(0 153 204 / 40%);
     --border-color: #3a3a3a;
     --nav-glass: #1e1e1e;
     --font-main: 'VT323', monospace;
@@ -59,8 +61,9 @@
     --winamp-border-dark: #151515;
     --winamp-title-bg: linear-gradient(180deg, #3a3a6a 0%, #232346 50%, #1a1a3a 100%);
     --winamp-button-bg: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 50%, #2a2a2a 100%);
-    --winamp-display-bg: #000000;
-    --winamp-inset-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.7), inset -1px -1px 1px rgba(100, 100, 100, 0.15);
+    --winamp-display-bg: #000;
+    --winamp-inset-shadow:
+        inset 1px 1px 3px rgb(0 0 0 / 70%), inset -1px -1px 1px rgb(100 100 100 / 15%);
 }
 
 * {
@@ -76,7 +79,9 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     position: relative;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
 }
 
 /* --- Liquid Background --- */
@@ -276,8 +281,6 @@ ul {
     transition: all 0.2s ease;
 }
 
-
-
 /* Main Content */
 #main-content {
     flex: 1;
@@ -285,7 +288,7 @@ ul {
     max-width: 1200px;
     margin: 0 auto;
     width: 100%;
-    animation: fadeIn 0.5s ease-out;
+    animation: fade-in 0.5s ease-out;
 }
 
 /* Footer */
@@ -298,7 +301,7 @@ ul {
 }
 
 /* Animations */
-@keyframes fadeIn {
+@keyframes fade-in {
     from {
         opacity: 0;
         transform: translateY(10px);
@@ -363,7 +366,7 @@ ul {
 
 .hero-content .highlight {
     color: var(--accent-color);
-    background: linear-gradient(120deg, rgba(88, 166, 255, 0.1) 0%, rgba(88, 166, 255, 0.05) 100%);
+    background: linear-gradient(120deg, rgb(88 166 255 / 10%) 0%, rgb(88 166 255 / 5%) 100%);
     padding: 0 0.5rem;
     border-radius: 8px;
 }
@@ -377,7 +380,7 @@ ul {
 .bio {
     color: var(--text-secondary);
     max-width: 600px;
-    margin: 0 auto 2.5rem auto;
+    margin: 0 auto 2.5rem;
     font-size: 1.1rem;
 }
 
@@ -402,13 +405,13 @@ ul {
 .btn.primary {
     background-color: var(--accent-color);
     color: #fff;
-    box-shadow: 0 4px 14px 0 rgba(88, 166, 255, 0.39);
+    box-shadow: 0 4px 14px 0 rgb(88 166 255 / 39%);
 }
 
 .btn.primary:hover {
     background-color: #3e8cd8;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(88, 166, 255, 0.23);
+    box-shadow: 0 6px 20px rgb(88 166 255 / 23%);
 }
 
 .btn.secondary {
@@ -424,14 +427,15 @@ ul {
 
 .default-view {
     display: flex;
+
     /* home-hero was flex */
 }
 
-[data-theme="winamp"] .winamp-view {
+[data-theme='winamp'] .winamp-view {
     display: flex;
 }
 
-[data-theme="winamp"] .default-view {
+[data-theme='winamp'] .default-view {
     display: none;
 }
 
@@ -449,8 +453,8 @@ ul {
     padding: 10px;
     border-radius: 4px;
     box-shadow:
-        10px 10px 30px rgba(0, 0, 0, 0.5),
-        inset 1px 1px 2px rgba(255, 255, 255, 0.2);
+        10px 10px 30px rgb(0 0 0 / 50%),
+        inset 1px 1px 2px rgb(255 255 255 / 20%);
     position: relative;
     max-width: 800px;
     width: 100%;
@@ -463,11 +467,14 @@ ul {
 .album-jewel-case::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0) 60%, rgba(255, 255, 255, 0.05) 100%);
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgb(255 255 255 / 10%) 0%,
+        rgb(255 255 255 / 0%) 40%,
+        rgb(255 255 255 / 0%) 60%,
+        rgb(255 255 255 / 5%) 100%
+    );
     pointer-events: none;
     border-radius: 4px;
     z-index: 10;
@@ -493,6 +500,7 @@ ul {
     height: 100%;
     object-fit: cover;
     filter: contrast(1.2) sepia(0.2);
+
     /* Slight retro feel */
 }
 
@@ -532,6 +540,7 @@ ul {
     padding-right: 2rem;
     text-align: left;
     font-family: 'Helvetica Neue', Arial, sans-serif;
+
     /* Clean sleeve font */
 }
 
@@ -583,7 +592,7 @@ ul {
 }
 
 /* Mobile Album */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .album-jewel-case {
         flex-direction: column;
         gap: 1rem;
@@ -623,11 +632,11 @@ ul {
     display: block;
 }
 
-[data-theme="winamp"] .experience-playlist {
+[data-theme='winamp'] .experience-playlist {
     display: block;
 }
 
-[data-theme="winamp"] .experience-timeline {
+[data-theme='winamp'] .experience-timeline {
     display: none;
 }
 
@@ -685,7 +694,7 @@ ul {
 
 .tags span {
     font-size: 0.8rem;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgb(255 255 255 / 5%);
     padding: 0.3rem 0.8rem;
     border-radius: 20px;
     border: 1px solid var(--border-color);
@@ -712,18 +721,18 @@ ul {
 }
 
 .track-row {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgb(255 255 255 / 5%);
     cursor: pointer;
     transition: background-color 0.2s ease;
     border-radius: 6px;
 }
 
 .track-row:hover {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgb(255 255 255 / 5%);
 }
 
 .track-row.playing {
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color: rgb(255 255 255 / 8%);
 }
 
 .track-row.playing .song-title {
@@ -803,16 +812,18 @@ ul {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    background: rgba(0, 0, 0, 0.1);
+    background: rgb(0 0 0 / 10%);
 }
 
 .track-row.playing .track-lyrics {
     max-height: 800px;
+
     /* Arbitrary large height */
 }
 
 .lyrics-content {
     padding: 1.5rem 2rem 2rem 60px;
+
     /* Indent to align with Title */
 }
 
@@ -861,11 +872,11 @@ ul {
 }
 
 /* Responsive Playlist */
-@media (max-width: 768px) {
-
+@media (width <= 768px) {
     .playlist-header,
     .track-main {
         grid-template-columns: 30px 1fr 60px;
+
         /* Hide Artist/Album on mobile */
     }
 
@@ -885,6 +896,7 @@ ul {
     /* Show artist name smaller under title on mobile if needed, or just hide */
     .song-title::after {
         content: attr(data-artist);
+
         /* Advanced: could inject artist via attribute */
         display: block;
         font-size: 0.75rem;
@@ -906,22 +918,26 @@ ul {
 
 .card {
     background: var(--card-bg);
+
     /* Now generic, updated via variables above */
     border: 1px solid var(--border-color);
     padding: 2rem;
     border-radius: 16px;
+
     /* A bit rounder for liquid feel */
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
 
     /* Glass Effect */
     backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px 0 rgb(0 0 0 / 10%);
 }
 
 .card:hover {
     border-color: var(--accent-color);
-    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: 0 12px 40px 0 rgb(0 0 0 / 15%);
 }
 
 .card-header {
@@ -979,20 +995,18 @@ ul {
 
     /* Glass Effect */
     backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 16px 0 rgb(0 0 0 / 5%);
 }
 
 .stack-item:hover {
     border-color: var(--accent-color);
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 25px rgb(0 0 0 / 15%);
 }
 
 .stack-icon {
     font-size: 2rem;
 }
-
 
 /* --- Job Details (Experiences) --- */
 .job-details {
@@ -1021,7 +1035,9 @@ ul {
     object-fit: cover;
     border: 3px solid var(--accent-color);
     box-shadow: 0 0 20px var(--accent-glow);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
 .profile-photo:hover {
@@ -1071,24 +1087,26 @@ ul {
 }
 
 /* === Winamp Mode Overrides === */
-[data-theme="winamp"] .card,
-[data-theme="winamp"] .stack-item {
+[data-theme='winamp'] .card,
+[data-theme='winamp'] .stack-item {
     border-radius: 4px;
     border: 2px solid;
-    border-color: var(--winamp-border-light) var(--winamp-border-dark) var(--winamp-border-dark) var(--winamp-border-light);
+    border-color: var(--winamp-border-light) var(--winamp-border-dark) var(--winamp-border-dark)
+        var(--winamp-border-light);
     box-shadow: var(--winamp-inset-shadow);
     backdrop-filter: none;
 }
 
 /* === Winamp Mode Overrides === */
+
 /* Header - Main Window Title Bar Look */
-[data-theme="winamp"] .main-header {
+[data-theme='winamp'] .main-header {
     background: #19193b;
     padding: 8px 10px;
     border-top: 2px solid #5a5a7a;
     border-left: 2px solid #5a5a7a;
-    border-right: 2px solid #000000;
-    border-bottom: 2px solid #000000;
+    border-right: 2px solid #000;
+    border-bottom: 2px solid #000;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -1097,7 +1115,7 @@ ul {
 }
 
 /* Logo - Title Bar Text */
-[data-theme="winamp"] .logo {
+[data-theme='winamp'] .logo {
     display: flex;
     align-items: center;
     flex-grow: 1;
@@ -1111,27 +1129,34 @@ ul {
     letter-spacing: 1px;
 }
 
-[data-theme="winamp"] .logo::before,
-[data-theme="winamp"] .logo::after {
+[data-theme='winamp'] .logo::before,
+[data-theme='winamp'] .logo::after {
     content: '';
     height: 10px;
-    background: linear-gradient(to bottom,
-            #d8d3b8 0%, #d8d3b8 20%,
-            #827d62 20%, #827d62 40%,
-            transparent 40%, transparent 60%,
-            #d8d3b8 60%, #d8d3b8 80%,
-            #827d62 80%, #827d62 100%);
+    background: linear-gradient(
+        to bottom,
+        #d8d3b8 0%,
+        #d8d3b8 20%,
+        #827d62 20%,
+        #827d62 40%,
+        transparent 40%,
+        transparent 60%,
+        #d8d3b8 60%,
+        #d8d3b8 80%,
+        #827d62 80%,
+        #827d62 100%
+    );
 }
 
-[data-theme="winamp"] .logo::before {
+[data-theme='winamp'] .logo::before {
     flex-grow: 1;
 }
 
-[data-theme="winamp"] .logo::after {
+[data-theme='winamp'] .logo::after {
     flex-grow: 1;
 }
 
-[data-theme="winamp"] .main-header::before {
+[data-theme='winamp'] .main-header::before {
     content: '⚡';
     color: #e2e0ca;
     margin-right: -4px;
@@ -1140,179 +1165,197 @@ ul {
 }
 
 /* Navigation items mimicking window buttons */
-[data-theme="winamp"] .nav-content {
+[data-theme='winamp'] .nav-content {
     display: flex;
     align-items: center;
     gap: 6px;
 }
 
-[data-theme="winamp"] .main-nav ul {
+[data-theme='winamp'] .main-nav ul {
     display: flex;
     gap: 4px;
 }
 
-[data-theme="winamp"] .main-nav a,
-[data-theme="winamp"] #theme-selector,
-[data-theme="winamp"] .social-links a {
+[data-theme='winamp'] .main-nav a,
+[data-theme='winamp'] #theme-selector,
+[data-theme='winamp'] .social-links a {
     display: inline-block;
     background: #c3c7d6;
-    border-top: 1px solid #ffffff;
-    border-left: 1px solid #ffffff;
+    border-top: 1px solid #fff;
+    border-left: 1px solid #fff;
     border-right: 1px solid #4a4a52;
     border-bottom: 1px solid #4a4a52;
-    color: #000000;
+    color: #000;
     font-size: 10px;
     font-family: Arial, sans-serif;
     font-weight: bold;
     padding: 2px 5px;
     text-transform: uppercase;
     text-decoration: none;
-    box-shadow: inset 1px 1px 0px #ffffff, inset -1px -1px 0px #848284;
+    box-shadow:
+        inset 1px 1px 0 #fff,
+        inset -1px -1px 0 #848284;
 }
 
-[data-theme="winamp"] .main-nav a:hover,
-[data-theme="winamp"] .social-links a:hover,
-[data-theme="winamp"] #theme-selector:hover {
+[data-theme='winamp'] .main-nav a:hover,
+[data-theme='winamp'] .social-links a:hover,
+[data-theme='winamp'] #theme-selector:hover {
     background: #e1e3ec;
-    color: #000000;
+    color: #000;
 }
 
-[data-theme="winamp"] .main-nav a:active,
-[data-theme="winamp"] #theme-selector:active,
-[data-theme="winamp"] .social-links a:active {
+[data-theme='winamp'] .main-nav a:active,
+[data-theme='winamp'] #theme-selector:active,
+[data-theme='winamp'] .social-links a:active {
     border-top: 1px solid #4a4a52;
     border-left: 1px solid #4a4a52;
-    border-right: 1px solid #ffffff;
-    border-bottom: 1px solid #ffffff;
-    box-shadow: inset 1px 1px 0px #000000;
+    border-right: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    box-shadow: inset 1px 1px 0 #000;
     padding: 3px 4px 1px 6px;
 }
 
-[data-theme="winamp"] #theme-selector {
+[data-theme='winamp'] #theme-selector {
     appearance: none;
-    -webkit-appearance: none;
     margin-right: 4px;
 }
 
-[data-theme="winamp"] .social-links {
+[data-theme='winamp'] .social-links {
     display: flex;
     align-items: center;
     gap: 4px;
 }
 
-[data-theme="winamp"] .hamburger span {
+[data-theme='winamp'] .hamburger span {
     background: #e2e0ca;
 }
 
 /* Old Nav overrides removed to support new titlebar look */
 
 /* Buttons - Playback Controls (Silver/Metallic) */
-[data-theme="winamp"] .btn {
+[data-theme='winamp'] .btn {
     border-radius: 50%;
+
     /* Play/Pause often round or rounded icons, but standard buttons are rectangular */
     border-radius: 3px;
     border: 1px solid;
     border-color: #f2f2f2 #505050 #505050 #f2f2f2;
+
     /* Outset silver */
     background: linear-gradient(180deg, #d8d8d8 0%, #c0c0c0 50%, #a0a0a0 100%);
-    color: #000000;
+    color: #000;
     text-transform: uppercase;
     font-size: 0.8rem;
     font-weight: bold;
     letter-spacing: 0.5px;
-    box-shadow: inset 1px 1px 0 #ffffff, 1px 1px 2px rgba(0, 0, 0, 0.5);
+    box-shadow:
+        inset 1px 1px 0 #fff,
+        1px 1px 2px rgb(0 0 0 / 50%);
+
     /* Mimic "CUE", "PLAY" buttons */
     min-width: 0;
     padding: 0.4rem 1rem;
 }
 
-[data-theme="winamp"] .btn:hover {
+[data-theme='winamp'] .btn:hover {
     background: linear-gradient(180deg, #e8e8e8 0%, #d0d0d0 50%, #b0b0b0 100%);
 }
 
-[data-theme="winamp"] .btn:active {
+[data-theme='winamp'] .btn:active {
     border-color: #505050 #f2f2f2 #f2f2f2 #505050;
+
     /* Inset on press */
     background: linear-gradient(180deg, #a0a0a0 0%, #c0c0c0 50%, #d8d8d8 100%);
-    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 1px 1px 2px rgb(0 0 0 / 50%);
     transform: translateY(1px);
 }
 
-[data-theme="winamp"] .btn.primary {
+[data-theme='winamp'] .btn.primary {
     /* Primary isn't green anymore, it's just a playback button */
     background: linear-gradient(180deg, #d8d8d8 0%, #c0c0c0 50%, #a0a0a0 100%);
-    color: #000000;
+    color: #000;
 }
 
 /* EQ Slider Look for Timeline */
-[data-theme="winamp"] .timeline {
+[data-theme='winamp'] .timeline {
     border-left: none;
+
     /* Remove base theme line */
     padding-left: 0;
 }
 
-[data-theme="winamp"] .timeline-item {
+[data-theme='winamp'] .timeline-item {
     padding-left: 50px;
+
     /* Space for the slider */
     position: relative;
     border-left: none;
     margin-bottom: 2rem;
 }
 
-[data-theme="winamp"] .timeline-item::before {
+[data-theme='winamp'] .timeline-item::before {
     /* Track Slot */
     content: '';
     position: absolute;
     left: 20px;
     top: 5px;
     bottom: 5px;
+
     /* Span full height minus spacing */
     width: 8px;
+
     /* Slightly wider track */
-    background: #000000;
-    border: 1px solid #808080;
-    border-right-color: #ffffff;
-    border-bottom-color: #ffffff;
-    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.8);
+    background: var(--winamp-display-bg);
+    border: 1px solid var(--accent-color);
+    box-shadow: inset 1px 1px 2px rgb(0 0 0 / 80%);
     border-radius: 0;
+
     /* Override base roundness */
     transform: none;
+
     /* Remove base translateX */
 }
 
-[data-theme="winamp"] .timeline-item::after {
+[data-theme='winamp'] .timeline-item::after {
     /* Fader Knob */
     content: '';
     position: absolute;
     left: 17px;
+
     /* Centered on 20px+8px track: 20 + 4 - 7 = 17 */
     top: 25px;
+
     /* Adjustable vertical position */
     width: 14px;
     height: 24px;
+
     /* Taller fader knob */
     background: linear-gradient(180deg, #c0c0c0 0%, #808080 100%);
+
     /* Metallic gradient */
-    border: 1px solid #ffffff;
+    border: 1px solid #fff;
     border-right-color: #404040;
     border-bottom-color: #404040;
-    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 3px rgb(0 0 0 / 50%);
     border-radius: 2px;
 }
 
-[data-theme="winamp"] .timeline-item:hover::after {
+[data-theme='winamp'] .timeline-item:hover::after {
     background: linear-gradient(180deg, #e0e0e0 0%, #a0a0a0 100%);
-    box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+    box-shadow: 0 0 5px rgb(0 255 0 / 50%);
+
     /* Glowing knob on hover */
 }
 
 /* Playlist Editor Look for Cards */
-[data-theme="winamp"] .card,
-[data-theme="winamp"] .stack-item,
-[data-theme="winamp"] .playlist-container {
-    background: #000000;
+[data-theme='winamp'] .card,
+[data-theme='winamp'] .stack-item,
+[data-theme='winamp'] .playlist-container {
+    background: #000;
     border: none;
+
     /* Playlist usually inside main window, but standalone cards need frame? */
+
     /* Let's give them a thin frame or just black bg */
     border: 1px solid #4a4a4b;
     border-radius: 0;
@@ -1321,72 +1364,71 @@ ul {
     padding: 1rem;
 }
 
-[data-theme="winamp"] .card h3,
-[data-theme="winamp"] .stack-category h3 {
-    color: #00E100;
+[data-theme='winamp'] .card h3,
+[data-theme='winamp'] .stack-category h3 {
+    color: #00e100;
     font-size: 1.3rem;
     letter-spacing: 1px;
     margin-bottom: 0.5rem;
 }
 
-[data-theme="winamp"] .card .institution {
-    color: #00E100;
+[data-theme='winamp'] .card .institution {
+    color: #00e100;
     opacity: 0.7;
 }
 
-[data-theme="winamp"] .card .year {
-    color: #0099CC;
+[data-theme='winamp'] .card .year {
+    color: #09c;
+
     /* Teal/Blue */
     font-weight: bold;
 }
 
-[data-theme="winamp"] .card p,
-[data-theme="winamp"] .stack-item {
-    color: #00E100;
+[data-theme='winamp'] .card p,
+[data-theme='winamp'] .stack-item {
+    color: #00e100;
     font-size: 1rem;
     line-height: 1.4;
 }
 
 /* Old placeholder block removed */
 
-[data-theme="winamp"] .section-title::after {
+[data-theme='winamp'] .section-title::after {
     background: var(--accent-color);
     height: 3px;
 }
 
-[data-theme="winamp"] .hero-content h1,
-[data-theme="winamp"] .section-title {
-    text-shadow: 0 0 8px var(--text-primary), 0 0 15px rgba(0, 225, 0, 0.3);
+[data-theme='winamp'] .hero-content h1,
+[data-theme='winamp'] .section-title {
+    text-shadow:
+        0 0 8px var(--text-primary),
+        0 0 15px rgb(0 225 0 / 30%);
 }
 
 /* Winamp display-style backgrounds */
-[data-theme="winamp"] .home-hero {
+[data-theme='winamp'] .home-hero {
     background: var(--winamp-display-bg);
     border: 2px solid;
-    border-color: var(--winamp-border-dark) var(--winamp-border-light) var(--winamp-border-light) var(--winamp-border-dark);
+    border-color: var(--winamp-border-dark) var(--winamp-border-light) var(--winamp-border-light)
+        var(--winamp-border-dark);
     border-radius: 4px;
     padding: 2rem;
     margin-bottom: 2rem;
 }
 
-[data-theme="winamp"] .profile-photo {
+[data-theme='winamp'] .profile-photo {
     border-radius: 0;
     border: 2px solid var(--accent-color);
     box-shadow: 0 0 10px var(--accent-glow);
 }
 
-[data-theme="winamp"] .timeline-item::before {
-    border-color: var(--accent-color);
-    background: var(--winamp-display-bg);
-}
-
-[data-theme="winamp"] .main-nav a.active {
+[data-theme='winamp'] .main-nav a.active {
     background: var(--accent-color);
-    color: #000000;
+    color: #000;
     padding: 0.3rem 0.6rem;
 }
 
-[data-theme="winamp"] .main-nav a.active::after {
+[data-theme='winamp'] .main-nav a.active::after {
     display: none;
 }
 
@@ -1418,18 +1460,21 @@ ul {
     border-color: var(--accent-color);
 }
 
-[data-theme="winamp"] .theme-selector select {
+[data-theme='winamp'] .theme-selector select {
     border-radius: 2px;
     border: 2px solid;
-    border-color: var(--winamp-border-light) var(--winamp-border-dark) var(--winamp-border-dark) var(--winamp-border-light);
+    border-color: var(--winamp-border-light) var(--winamp-border-dark) var(--winamp-border-dark)
+        var(--winamp-border-light);
 }
 
 /* Responsive */
+
 /* Responsive */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .main-header {
         position: sticky;
         top: 0;
+
         /* Keep flex-direction row (default) for logo + hamburger alignment */
         flex-direction: row;
     }
@@ -1441,25 +1486,28 @@ ul {
     .nav-content {
         position: absolute;
         top: 100%;
+
         /* Position below the header */
         right: 1rem;
         width: auto;
         min-width: 200px;
         background: var(--bg-color);
         backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
         flex-direction: column;
         align-items: stretch;
         gap: 0;
         padding: 1rem;
         border-radius: 12px;
         border: 1px solid var(--border-color);
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 10px 40px rgb(0 0 0 / 30%);
         z-index: 100;
         opacity: 0;
         visibility: hidden;
         transform: translateY(-10px);
-        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+        transition:
+            opacity 0.3s ease,
+            transform 0.3s ease,
+            visibility 0.3s;
     }
 
     .nav-content.active {
@@ -1489,6 +1537,7 @@ ul {
 
     .main-nav a::after {
         display: none;
+
         /* Remove underline animation in dropdown */
     }
 
@@ -1500,8 +1549,6 @@ ul {
         margin-top: 0.5rem;
         border-top: 1px solid var(--border-color);
     }
-
-
 
     #main-content {
         padding: 2rem 1rem;
@@ -1524,7 +1571,7 @@ ul {
     }
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
     .hero-content h1 {
         font-size: 2rem;
     }

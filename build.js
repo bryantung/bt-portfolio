@@ -46,12 +46,12 @@ const pages = [
     { metadata: PAGE_METADATA.experiences, partial: 'experiences.html' },
     { metadata: PAGE_METADATA.education, partial: 'education.html' },
     { metadata: PAGE_METADATA.techStack, partial: 'tech-stack.html' },
-    { metadata: PAGE_METADATA.contact, partial: 'contact.html' }
+    { metadata: PAGE_METADATA.contact, partial: 'contact.html' },
 ];
 
 // 4. Generate Pages
 console.log('Generating HTML pages...');
-pages.forEach(page => {
+pages.forEach((page) => {
     const partialPath = path.join(PARTIALS_DIR, page.partial);
     let content = '';
 

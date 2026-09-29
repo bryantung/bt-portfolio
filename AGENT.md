@@ -9,6 +9,9 @@ The site uses HTMX links for page transitions and CSS theme variants (`dark`, `l
 ## Commands
 
 - `npm install` installs dependencies.
+- `npm run lint` checks JavaScript, CSS, and formatting.
+- `npm run lint:fix` applies safe lint and formatting fixes.
+- `npm test` runs linting, unit tests, and the static build.
 - `npm run build` rebuilds `dist/` from views and public assets.
 - `npm start` runs the static build then serves `dist/` locally.
 
@@ -33,7 +36,7 @@ The file is public portfolio content. Do not include secrets, private contact de
 
 ## Verification checklist
 
-1. Run `npm run build`.
+1. Run `npm test`.
 2. Confirm `dist/experiences.html` contains each job in both `.timeline-item` and `.track-row` forms.
 3. Serve `dist/` and view `/experiences.html` in dark, light, and Winamp themes.
 4. Inspect `git diff` so generated or unrelated local files are not included.

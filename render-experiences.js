@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { escapeHtml } = require('./utils/html');
 
 const LOCAL_DATA_PATH = path.join(__dirname, 'data', 'experiences.json');
 const REQUIRED_FIELDS = [
@@ -9,17 +10,8 @@ const REQUIRED_FIELDS = [
     'playlistCompany',
     'category',
     'playlistDuration',
-    'summary'
+    'summary',
 ];
-
-function escapeHtml(value) {
-    return String(value)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
-}
 
 function loadExperiences() {
     const json = fs.readFileSync(LOCAL_DATA_PATH, 'utf8');
@@ -41,14 +33,18 @@ function loadExperiences() {
             throw new Error(`${label} must be an object.`);
         }
 
-        REQUIRED_FIELDS.forEach(field => {
+        REQUIRED_FIELDS.forEach((field) => {
             if (typeof experience[field] !== 'string' || !experience[field].trim()) {
                 throw new Error(`${label} requires a non-empty "${field}" string.`);
             }
         });
 
-        ['highlights', 'technologies'].forEach(field => {
-            if (!Array.isArray(experience[field]) || experience[field].length === 0 || experience[field].some(value => typeof value !== 'string' || !value.trim())) {
+        ['highlights', 'technologies'].forEach((field) => {
+            if (
+                !Array.isArray(experience[field]) ||
+                experience[field].length === 0 ||
+                experience[field].some((value) => typeof value !== 'string' || !value.trim())
+            ) {
                 throw new Error(`${label} requires a non-empty "${field}" array of strings.`);
             }
         });
@@ -58,7 +54,9 @@ function loadExperiences() {
 }
 
 function renderTimeline(experiences) {
-    return experiences.map(experience => `
+    return experiences
+        .map(
+            (experience) => `
             <div class="timeline-item">
                 <div class="timeline-date">${escapeHtml(experience.date)}</div>
                 <div class="timeline-content">
@@ -66,17 +64,21 @@ function renderTimeline(experiences) {
                     <h4 class="company">${escapeHtml(experience.company)}</h4>
                     <p>${escapeHtml(experience.summary)}</p>
                     <ul class="job-details">
-${experience.highlights.map(highlight => `                        <li>${escapeHtml(highlight)}</li>`).join('\n')}
+${experience.highlights.map((highlight) => `                        <li>${escapeHtml(highlight)}</li>`).join('\n')}
                     </ul>
                     <div class="tags">
-${experience.technologies.map(technology => `                        <span>${escapeHtml(technology)}</span>`).join('\n')}
+${experience.technologies.map((technology) => `                        <span>${escapeHtml(technology)}</span>`).join('\n')}
                     </div>
                 </div>
-            </div>`).join('\n');
+            </div>`,
+        )
+        .join('\n');
 }
 
 function renderPlaylist(experiences) {
-    return experiences.map((experience, index) => `
+    return experiences
+        .map(
+            (experience, index) => `
                 <div class="track-row${index === 0 ? ' playing' : ''}" onclick="toggleTrack(this)">
                     <div class="track-main">
                         <div class="col-play">
@@ -94,14 +96,16 @@ function renderPlaylist(experiences) {
                         <div class="lyrics-content">
                             <p class="lyrics-intro">&quot;${escapeHtml(experience.summary)}&quot;</p>
                             <ul class="lyrics-lines">
-${experience.highlights.map(highlight => `                                <li>${escapeHtml(highlight)}</li>`).join('\n')}
+${experience.highlights.map((highlight) => `                                <li>${escapeHtml(highlight)}</li>`).join('\n')}
                             </ul>
                             <div class="track-tags">
-${experience.technologies.map(technology => `                                <span>#${escapeHtml(technology.replace(/\s+/g, ''))}</span>`).join('\n')}
+${experience.technologies.map((technology) => `                                <span>#${escapeHtml(technology.replace(/\s+/g, ''))}</span>`).join('\n')}
                             </div>
                         </div>
                     </div>
-                </div>`).join('\n');
+                </div>`,
+        )
+        .join('\n');
 }
 
 function renderExperiences(template) {

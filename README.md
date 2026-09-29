@@ -9,9 +9,9 @@ A personal portfolio website featuring a hybrid static/SSR (Server-Side Renderin
 - **Hybrid Rendering Architecture:** Can be dynamically served via Node.js/Express or compiled into a static site.
 - **HTMX Integration:** Seamless page transitions and dynamic content loading without full page reloads.
 - **Dynamic Theming System:**
-  - Premium Dark Mode (Default) with liquid glassmorphism.
-  - Clean Light Mode.
-  - **Winamp Classic Mode:** A deeply customized retro theme mimicking the classic media player, including track playlists for work experiences and jewel case album art.
+    - Premium Dark Mode (Default) with liquid glassmorphism.
+    - Clean Light Mode.
+    - **Winamp Classic Mode:** A deeply customized retro theme mimicking the classic media player, including track playlists for work experiences and jewel case album art.
 - **Responsive Design:** Ensures smooth viewing across desktop and mobile devices.
 
 ## 🛠️ Technology Stack
@@ -40,29 +40,46 @@ bt-portfolio/
 ## ⚙️ Getting Started
 
 ### Prerequisites
+
 Make sure you have [Node.js](https://nodejs.org/) installed on your machine.
 
 ### Installation
 
 1. Clone this repository or navigate to the project directory.
 2. Install the dependencies:
-   ```bash
-   npm install
-   ```
+    ```bash
+    npm install
+    ```
 
 ### Running Locally (Development & SSR)
+
 To start the Express server which serves dynamic pages and handles HTMX requests natively:
+
 ```bash
 npm start
 ```
-*Note: This will also automatically trigger the build script (`npm run prestart`) and serve the application on `http://localhost:3000`.*
+
+_Note: This will also automatically trigger the build script (`npm run prestart`) and serve the application on `http://localhost:3000`._
 
 ### Building a Static Version
+
 If you want to generate a standalone static site that can be hosted on any static file server (like GitHub Pages, Netlify, or Vercel):
+
 ```bash
 npm run build
 ```
+
 This will compile the layouts, partials, and public assets into the `/dist` directory.
+
+### Code Quality
+
+Run the full local quality gate before opening a pull request:
+
+```bash
+npm test
+```
+
+This checks JavaScript with ESLint, CSS with Stylelint, HTML and source formatting with Prettier, runs unit tests, and verifies the static build. Use `npm run lint:fix` to apply safe lint and formatting fixes.
 
 ## 🎨 Theming
 
@@ -83,4 +100,5 @@ For the published GitHub Pages site, edit `data/experiences.json` directly in Gi
 ISC License
 
 ---
-*✨ P.S. Every single line of code in this project was conjured up entirely through the magic of AI prompts! Who knew talking to computers could build something this cool? 🤖🪄*
+
+_✨ P.S. Every single line of code in this project was conjured up entirely through the magic of AI prompts! Who knew talking to computers could build something this cool? 🤖🪄_
