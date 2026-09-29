@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bryantung.github.io/bt-portfolio/sitemap.xml

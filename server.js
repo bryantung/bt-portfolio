@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const { renderExperiences } = require('./render-experiences');
+const { PAGE_METADATA, renderSeoMetadata } = require('./seo');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -18,18 +19,20 @@ const readView = (viewName) => {
 };
 
 // Helper to render layout with content
-const renderLayout = (content) => {
+const renderLayout = (content, metadata) => {
     let layout = readView('index.html');
-    return layout.replace('<!-- CONTENT_PLACEHOLDER -->', content);
+    return layout
+        .replace('<!-- SEO_METADATA -->', renderSeoMetadata(metadata))
+        .replace('<!-- CONTENT_PLACEHOLDER -->', content);
 };
 
 // Routes
 const routes = [
-    { path: '/', partial: 'partials/home.html', title: 'Home' },
-    { path: '/experiences', partial: 'partials/experiences.html', title: 'Experiences' },
-    { path: '/education', partial: 'partials/education.html', title: 'Education' },
-    { path: '/tech-stack', partial: 'partials/tech-stack.html', title: 'Tech Stack' },
-    { path: '/contact', partial: 'partials/contact.html', title: 'Contact' }
+    { path: '/', partial: 'partials/home.html', metadata: PAGE_METADATA.home },
+    { path: '/experiences', partial: 'partials/experiences.html', metadata: PAGE_METADATA.experiences },
+    { path: '/education', partial: 'partials/education.html', metadata: PAGE_METADATA.education },
+    { path: '/tech-stack', partial: 'partials/tech-stack.html', metadata: PAGE_METADATA.techStack },
+    { path: '/contact', partial: 'partials/contact.html', metadata: PAGE_METADATA.contact }
 ];
 
 routes.forEach(route => {
@@ -44,7 +47,7 @@ routes.forEach(route => {
             res.send(content);
         } else {
             // If full page load, render layout with content injected
-            const fullPage = renderLayout(content);
+            const fullPage = renderLayout(content, route.metadata);
             res.send(fullPage);
         }
     });

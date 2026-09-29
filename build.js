@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { renderExperiences } = require('./render-experiences');
+const { PAGE_METADATA, renderSeoMetadata } = require('./seo');
 
 // Configuration
 const DIST_DIR = path.join(__dirname, 'dist');
@@ -41,11 +42,11 @@ const layout = fs.readFileSync(path.join(VIEWS_DIR, 'index.html'), 'utf8');
 
 // 3. Define Pages
 const pages = [
-    { filename: 'index.html', partial: 'home.html' },
-    { filename: 'experiences.html', partial: 'experiences.html' },
-    { filename: 'education.html', partial: 'education.html' },
-    { filename: 'tech-stack.html', partial: 'tech-stack.html' },
-    { filename: 'contact.html', partial: 'contact.html' }
+    { metadata: PAGE_METADATA.home, partial: 'home.html' },
+    { metadata: PAGE_METADATA.experiences, partial: 'experiences.html' },
+    { metadata: PAGE_METADATA.education, partial: 'education.html' },
+    { metadata: PAGE_METADATA.techStack, partial: 'tech-stack.html' },
+    { metadata: PAGE_METADATA.contact, partial: 'contact.html' }
 ];
 
 // 4. Generate Pages
@@ -66,10 +67,12 @@ pages.forEach(page => {
     // Inject content into layout
     // Note: We need to handle the active state in nav strings if we want perfection,
     // but for now we just inject the content.
-    const fullHtml = layout.replace('<!-- CONTENT_PLACEHOLDER -->', content);
+    const fullHtml = layout
+        .replace('<!-- SEO_METADATA -->', renderSeoMetadata(page.metadata))
+        .replace('<!-- CONTENT_PLACEHOLDER -->', content);
 
-    fs.writeFileSync(path.join(DIST_DIR, page.filename), fullHtml);
-    console.log(`Generated ${page.filename}`);
+    fs.writeFileSync(path.join(DIST_DIR, page.metadata.filename), fullHtml);
+    console.log(`Generated ${page.metadata.filename}`);
 });
 
 console.log('Build complete! Static site generated in /dist');
