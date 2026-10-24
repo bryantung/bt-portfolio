@@ -13,6 +13,7 @@
     --border-color: #383d40;
     --nav-glass: rgb(23 25 26 / 92%);
     --canvas-edge: rgb(255 255 255 / 2%);
+    --grid-line: rgb(88 166 255 / 20%);
 
     /* Typography */
     --font-main: 'Outfit', sans-serif;
@@ -32,6 +33,7 @@
     --border-color: #d5d9da;
     --nav-glass: rgb(245 246 245 / 94%);
     --canvas-edge: rgb(0 0 0 / 2%);
+    --grid-line: rgb(9 105 218 / 16%);
 }
 
 /* Winamp Classic Skin Theme */
@@ -70,6 +72,7 @@
 body {
     --line-color: color-mix(in srgb, var(--accent-color) 28%, transparent);
     --line-strong: color-mix(in srgb, var(--accent-color) 38%, transparent);
+    --ruler-left: clamp(34px, 4.8vw, 80px);
 
     font-family: var(--font-main);
     background-color: var(--bg-color);
@@ -93,12 +96,43 @@ body {
         var(--bg-color);
 }
 
+.background-grid {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: 34px 34px;
+    background-position: var(--ruler-left) 5.5rem;
+    mask-image: radial-gradient(
+        circle 140px at var(--grid-x, 50%) var(--grid-y, 50%),
+        #000 0%,
+        rgb(0 0 0 / 65%) 40%,
+        transparent 100%
+    );
+    opacity: 0;
+    transition: opacity 1s ease-out;
+}
+
+.background-grid.is-active {
+    opacity: 1;
+    transition-duration: 120ms;
+}
+
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+    .background-grid {
+        display: none;
+    }
+}
+
 .background-ruler {
     position: absolute;
     z-index: 0;
     top: 5.5rem;
     bottom: 6rem;
-    left: clamp(34px, 4.8vw, 80px);
+    left: var(--ruler-left);
     width: 26px;
     pointer-events: none;
     border-left: 1px solid var(--line-color);
@@ -110,13 +144,17 @@ body {
 }
 
 [data-theme='winamp'] .portfolio-background,
+[data-theme='winamp'] .background-grid,
 [data-theme='winamp'] .background-ruler {
     display: none;
 }
 
 @media (width <= 1100px) {
+    body:not(:has(.home-hero)) {
+        --ruler-left: 0;
+    }
+
     body:not(:has(.home-hero)) .background-ruler {
-        left: 0;
         width: 12px;
         background-size:
             10px 100%,
@@ -125,8 +163,11 @@ body {
 }
 
 @media (width <= 600px) {
+    body {
+        --ruler-left: 0;
+    }
+
     .background-ruler {
-        left: 0;
         width: 9px;
         background-size:
             8px 100%,
@@ -291,6 +332,7 @@ html:not([data-theme='winamp']) #main-content:has(> .home-hero) {
 .main-footer {
     text-align: center;
     padding: 2rem;
+    background-color: var(--bg-color);
     border-top: 1px solid var(--border-color);
     color: var(--text-secondary);
     font-size: 0.85rem;

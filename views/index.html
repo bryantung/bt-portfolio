@@ -53,11 +53,12 @@
         ></script>
 
         <!-- CSS -->
-        <link rel="stylesheet" href="css/styles.css?v=15" />
+        <link rel="stylesheet" href="css/styles.css?v=16" />
     </head>
 
     <body>
         <div class="portfolio-background" aria-hidden="true"></div>
+        <div class="background-grid" aria-hidden="true"></div>
         <span class="background-ruler" aria-hidden="true"></span>
         <div class="app-container">
             <header class="main-header">
@@ -189,6 +190,34 @@
         </div>
 
         <script>
+            const backgroundGrid = document.querySelector('.background-grid');
+            if (
+                backgroundGrid &&
+                window.matchMedia(
+                    '(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)',
+                ).matches
+            ) {
+                let fadeTimeout;
+
+                document.addEventListener(
+                    'pointermove',
+                    (event) => {
+                        if (event.pointerType === 'touch') return;
+
+                        backgroundGrid.style.setProperty('--grid-x', `${event.pageX}px`);
+                        backgroundGrid.style.setProperty('--grid-y', `${event.pageY}px`);
+                        backgroundGrid.classList.add('is-active');
+
+                        clearTimeout(fadeTimeout);
+                        fadeTimeout = setTimeout(
+                            () => backgroundGrid.classList.remove('is-active'),
+                            150,
+                        );
+                    },
+                    { passive: true },
+                );
+            }
+
             function syncThemeSelector() {
                 const selector = document.getElementById('theme-selector');
                 if (selector) {
