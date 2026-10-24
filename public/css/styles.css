@@ -1,37 +1,37 @@
 :root {
-    /* Color Palette - Dark Premium (Default) */
-    --bg-color: #0d1117;
-    --card-bg: rgb(22 27 34 / 70%);
+    color-scheme: dark;
 
-    /* Translucent for glass effect */
-    --text-primary: #f0f6fc;
-    --text-secondary: #8b949e;
+    /* Quiet graphite canvas */
+    --bg-color: #17191a;
+    --card-bg: rgb(29 32 34 / 88%);
+    --text-primary: #f0f2f1;
+    --text-secondary: #a7adb0;
     --accent-color: #58a6ff;
+    --button-text: #111518;
+    --button-hover: #3e8cd8;
     --accent-glow: rgb(88 166 255 / 15%);
-    --border-color: #30363d;
-    --nav-glass: rgb(13 17 23 / 85%);
+    --border-color: #383d40;
+    --nav-glass: rgb(23 25 26 / 92%);
+    --canvas-edge: rgb(255 255 255 / 2%);
 
     /* Typography */
     --font-main: 'Outfit', sans-serif;
-
-    /* Liquid Variables */
-    --blob-color-1: #58a6ff;
-    --blob-color-2: #8b5cf6;
-    --blob-color-3: #ec4899;
 }
 
 [data-theme='light'] {
-    --bg-color: #fff;
-    --card-bg: rgb(255 255 255 / 60%);
-    --text-primary: #1f2328;
-    --text-secondary: #424a53;
+    color-scheme: light;
+
+    --bg-color: #f5f6f5;
+    --card-bg: #fff;
+    --text-primary: #202426;
+    --text-secondary: #4d5558;
     --accent-color: #0969da;
+    --button-text: #fff;
+    --button-hover: #0754ad;
     --accent-glow: rgb(9 105 218 / 15%);
-    --border-color: rgb(0 0 0 / 10%);
-    --nav-glass: rgb(255 255 255 / 70%);
-    --blob-color-1: rgb(9 105 218 / 40%);
-    --blob-color-2: rgb(139 92 246 / 40%);
-    --blob-color-3: rgb(236 72 153 / 40%);
+    --border-color: #d5d9da;
+    --nav-glass: rgb(245 246 245 / 94%);
+    --canvas-edge: rgb(0 0 0 / 2%);
 }
 
 /* Winamp Classic Skin Theme */
@@ -51,11 +51,6 @@
     --nav-glass: #1e1e1e;
     --font-main: 'VT323', monospace;
 
-    /* Hide liquid blobs in Winamp mode */
-    --blob-color-1: transparent;
-    --blob-color-2: transparent;
-    --blob-color-3: transparent;
-
     /* Winamp-specific variables - metallic beveled look */
     --winamp-border-light: #5c5c5c;
     --winamp-border-dark: #151515;
@@ -73,6 +68,9 @@
 }
 
 body {
+    --line-color: color-mix(in srgb, var(--accent-color) 28%, transparent);
+    --line-strong: color-mix(in srgb, var(--accent-color) 38%, transparent);
+
     font-family: var(--font-main);
     background-color: var(--bg-color);
     color: var(--text-primary);
@@ -84,65 +82,55 @@ body {
         color 0.3s ease;
 }
 
-/* --- Liquid Background --- */
-.liquid-background {
+/* A quiet canvas and a scrolling ruler frame the standard themes. */
+.portfolio-background {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: -1;
-    overflow: hidden;
-    filter: blur(80px);
-    opacity: 0.6;
+    inset: 0;
+    z-index: 0;
     pointer-events: none;
+    overflow: hidden;
+    background: radial-gradient(ellipse 95% 75% at 50% 52%, transparent 48%, var(--canvas-edge))
+        var(--bg-color);
 }
 
-.blob {
+.background-ruler {
     position: absolute;
-    border-radius: 50%;
-    animation: float 10s infinite ease-in-out alternate;
+    z-index: 0;
+    top: 5.5rem;
+    bottom: 6rem;
+    left: clamp(34px, 4.8vw, 80px);
+    width: 26px;
+    pointer-events: none;
+    border-left: 1px solid var(--line-color);
+    background:
+        repeating-linear-gradient(to bottom, var(--line-strong) 0 1px, transparent 1px 170px) left
+            top / 25px 100% no-repeat,
+        repeating-linear-gradient(to bottom, var(--line-color) 0 1px, transparent 1px 34px) left
+            top / 10px 100% no-repeat;
 }
 
-.blob-1 {
-    width: 50vw;
-    height: 50vw;
-    background: var(--blob-color-1);
-    top: -10%;
-    left: -10%;
-    opacity: 0.4;
-    animation-duration: 25s;
+[data-theme='winamp'] .portfolio-background,
+[data-theme='winamp'] .background-ruler {
+    display: none;
 }
 
-.blob-2 {
-    width: 40vw;
-    height: 40vw;
-    background: var(--blob-color-2);
-    top: 20%;
-    right: -10%;
-    opacity: 0.3;
-    animation-duration: 30s;
-    animation-delay: -5s;
-}
-
-.blob-3 {
-    width: 35vw;
-    height: 35vw;
-    background: var(--blob-color-3);
-    bottom: -10%;
-    left: 20%;
-    opacity: 0.3;
-    animation-duration: 28s;
-    animation-delay: -10s;
-}
-
-@keyframes float {
-    0% {
-        transform: translate(0, 0) scale(1);
+@media (width <= 1100px) {
+    body:not(:has(.home-hero)) .background-ruler {
+        left: 0;
+        width: 12px;
+        background-size:
+            10px 100%,
+            5px 100%;
     }
+}
 
-    100% {
-        transform: translate(20px, 40px) scale(1.1);
+@media (width <= 600px) {
+    .background-ruler {
+        left: 0;
+        width: 9px;
+        background-size:
+            8px 100%,
+            4px 100%;
     }
 }
 
@@ -160,6 +148,8 @@ ul {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    position: relative;
+    z-index: 1;
 }
 
 /* Header & Nav */
@@ -291,6 +281,12 @@ ul {
     animation: fade-in 0.5s ease-out;
 }
 
+html:not([data-theme='winamp']) #main-content:has(> .home-hero) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 /* Footer */
 .main-footer {
     text-align: center;
@@ -328,6 +324,7 @@ ul {
     padding: 2rem 0;
     max-width: 900px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .section-title {
@@ -350,43 +347,55 @@ ul {
 
 /* --- Home / Hero --- */
 .home-hero {
-    min-height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
     text-align: center;
 }
 
+.hero-content {
+    width: 100%;
+    max-width: 820px;
+}
+
+.hero-content .profile-photo-container {
+    justify-content: center;
+    margin-bottom: 0.75rem;
+}
+
+.hero-content .profile-photo {
+    width: 120px;
+    height: 120px;
+}
+
 .hero-content h1 {
-    font-size: 4rem;
+    margin: 0 auto 0.65rem;
+    font-size: clamp(3.25rem, 7vw, 5rem);
     font-weight: 700;
-    margin-bottom: 1rem;
-    line-height: 1.1;
+    letter-spacing: -0.055em;
+    line-height: 1;
 }
 
-.hero-content .highlight {
-    color: var(--accent-color);
-    background: linear-gradient(120deg, rgb(88 166 255 / 10%) 0%, rgb(88 166 255 / 5%) 100%);
-    padding: 0 0.5rem;
-    border-radius: 8px;
-}
-
-.subtitle {
-    font-size: 1.5rem;
+.hero-role {
+    margin-bottom: 0.65rem;
+    font-size: clamp(1.4rem, 2.4vw, 2rem);
+    font-weight: 500;
     color: var(--text-primary);
-    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.hero-location {
+    margin-bottom: 1.3rem;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
 }
 
 .bio {
     color: var(--text-secondary);
-    max-width: 720px;
+    max-width: 62ch;
     margin: 0 auto 1.5rem;
-    font-size: 1.1rem;
-}
-
-.bio-cta {
-    display: block;
-    margin-top: 0.75rem;
+    font-size: 1.05rem;
 }
 
 .cta-group {
@@ -409,12 +418,12 @@ ul {
 
 .btn.primary {
     background-color: var(--accent-color);
-    color: #fff;
+    color: var(--button-text);
     box-shadow: 0 4px 14px 0 rgb(88 166 255 / 39%);
 }
 
 .btn.primary:hover {
-    background-color: #3e8cd8;
+    background-color: var(--button-hover);
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgb(88 166 255 / 23%);
 }
@@ -1223,6 +1232,11 @@ ul {
 [data-theme='winamp'] #theme-selector {
     appearance: none;
     margin-right: 4px;
+    padding-right: 1.6rem;
+}
+
+[data-theme='winamp'] #theme-selector:active {
+    padding-right: 1.6rem;
 }
 
 [data-theme='winamp'] .social-links {
@@ -1442,13 +1456,28 @@ ul {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    position: relative;
+}
+
+.theme-selector::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid currentcolor;
+    border-bottom: 2px solid currentcolor;
+    transform: translateY(-75%) rotate(45deg);
+    pointer-events: none;
 }
 
 .theme-selector select {
+    appearance: none;
     background: var(--card-bg);
     color: var(--text-primary);
     border: 1px solid var(--border-color);
-    padding: 0.4rem 0.8rem;
+    padding: 0.4rem 2.4rem 0.4rem 0.8rem;
     border-radius: 6px;
     font-family: var(--font-main);
     font-size: 0.85rem;
@@ -1460,16 +1489,19 @@ ul {
     border-color: var(--accent-color);
 }
 
-.theme-selector select:focus {
-    outline: none;
-    border-color: var(--accent-color);
-}
-
 [data-theme='winamp'] .theme-selector select {
     border-radius: 2px;
     border: 2px solid;
     border-color: var(--winamp-border-light) var(--winamp-border-dark) var(--winamp-border-dark)
         var(--winamp-border-light);
+}
+
+[data-theme='winamp'] .theme-selector::after {
+    right: 0.65rem;
+    width: 5px;
+    height: 5px;
+    border-width: 1px;
+    color: #000;
 }
 
 /* Responsive */
@@ -1556,37 +1588,28 @@ ul {
     }
 
     #main-content {
-        display: flex;
         padding: 1.25rem 1rem;
     }
 
     .home-hero {
-        flex: 1;
-        min-height: 0;
+        display: block;
     }
 
     .profile-photo-container {
         margin-bottom: 0.75rem;
     }
 
-    .profile-photo {
-        width: 120px;
-        height: 120px;
-    }
-
     .hero-content h1 {
-        font-size: 2.25rem;
         margin-bottom: 0.5rem;
     }
 
-    .subtitle {
-        font-size: 1.25rem;
-        margin-bottom: 0.75rem;
+    .hero-role {
+        margin-bottom: 0.5rem;
     }
 
     .bio {
         max-width: 38rem;
-        margin-bottom: 1.25rem;
+        margin: 0 auto 1.25rem;
         font-size: 1rem;
         line-height: 1.5;
     }
@@ -1608,22 +1631,38 @@ ul {
     }
 }
 
+:where(a, button, select):focus-visible {
+    outline: 3px solid var(--accent-color);
+    outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
 @media (width <= 480px) {
     #main-content {
         padding: 1rem 0.75rem 1.25rem;
     }
 
-    .profile-photo {
+    .hero-content .profile-photo {
         width: 96px;
         height: 96px;
     }
 
     .hero-content h1 {
-        font-size: 1.75rem;
+        font-size: 3rem;
     }
 
-    .subtitle {
-        font-size: 1.1rem;
+    .hero-role {
+        font-size: 1.35rem;
     }
 
     .bio {

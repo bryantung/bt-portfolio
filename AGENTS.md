@@ -27,6 +27,7 @@ The file is public portfolio content. Do not include secrets, private contact de
 
 ## Change guidelines
 
+- Before changing user-facing UI (markup, styles, layout, themes, or visual interactions), read and apply the repo-local `frontend-design` skill at `.agents/skills/frontend-design/SKILL.md`. Keep small fixes proportional to the existing design.
 - Preserve the single-source rendering pipeline for experience content. If fields change, update the data fixture, validation, both renderer outputs, and the workflow documentation together.
 - Escape any externally managed text before inserting it into HTML. `render-experiences.js` currently owns that responsibility.
 - Check both the standard timeline and Winamp playlist after experience-related changes, including mobile behavior.

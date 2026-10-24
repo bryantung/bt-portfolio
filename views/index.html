@@ -5,6 +5,38 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- SEO_METADATA -->
 
+        <script>
+            (() => {
+                const validThemes = ['dark', 'light', 'winamp'];
+                const url = new URL(window.location.href);
+                const urlTheme = url.searchParams.get('theme');
+                let storedTheme;
+
+                try {
+                    storedTheme = localStorage.getItem('theme');
+                } catch {
+                    storedTheme = null;
+                }
+
+                const theme = validThemes.includes(urlTheme)
+                    ? urlTheme
+                    : validThemes.includes(storedTheme)
+                      ? storedTheme
+                      : 'dark';
+                document.documentElement.setAttribute('data-theme', theme);
+
+                if (validThemes.includes(urlTheme)) {
+                    try {
+                        localStorage.setItem('theme', theme);
+                    } catch {
+                        // Keep the theme for this page when storage is unavailable.
+                    }
+                    url.searchParams.delete('theme');
+                    window.history.replaceState({}, '', url.pathname + url.search + url.hash);
+                }
+            })();
+        </script>
+
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,15 +53,12 @@
         ></script>
 
         <!-- CSS -->
-        <link rel="stylesheet" href="css/styles.css" />
+        <link rel="stylesheet" href="css/styles.css?v=15" />
     </head>
 
     <body>
-        <div class="liquid-background">
-            <div class="blob blob-1"></div>
-            <div class="blob blob-2"></div>
-            <div class="blob blob-3"></div>
-        </div>
+        <div class="portfolio-background" aria-hidden="true"></div>
+        <span class="background-ruler" aria-hidden="true"></span>
         <div class="app-container">
             <header class="main-header">
                 <div class="logo">BT Portfolio.</div>
@@ -48,7 +77,7 @@
                                     hx-target="#main-content"
                                     hx-select="#main-content"
                                     hx-push-url="true"
-                                    hx-swap="innerHTML transition:true"
+                                    hx-swap="outerHTML transition:true"
                                     >Home</a
                                 >
                             </li>
@@ -59,7 +88,7 @@
                                     hx-target="#main-content"
                                     hx-select="#main-content"
                                     hx-push-url="true"
-                                    hx-swap="innerHTML transition:true"
+                                    hx-swap="outerHTML transition:true"
                                     >Experiences</a
                                 >
                             </li>
@@ -70,7 +99,7 @@
                                     hx-target="#main-content"
                                     hx-select="#main-content"
                                     hx-push-url="true"
-                                    hx-swap="innerHTML transition:true"
+                                    hx-swap="outerHTML transition:true"
                                     >Education</a
                                 >
                             </li>
@@ -81,7 +110,7 @@
                                     hx-target="#main-content"
                                     hx-select="#main-content"
                                     hx-push-url="true"
-                                    hx-swap="innerHTML transition:true"
+                                    hx-swap="outerHTML transition:true"
                                     >Tech Stack</a
                                 >
                             </li>
@@ -92,7 +121,7 @@
                                     hx-target="#main-content"
                                     hx-select="#main-content"
                                     hx-push-url="true"
-                                    hx-swap="innerHTML transition:true"
+                                    hx-swap="outerHTML transition:true"
                                     >Contact</a
                                 >
                             </li>
@@ -160,57 +189,42 @@
         </div>
 
         <script>
-            // Theme Selector Logic
-            const themeSelector = document.getElementById('theme-selector');
-
-            // Check for theme in URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const urlTheme = urlParams.get('theme');
-            const validThemes = ['dark', 'light', 'winamp'];
-
-            // Determine theme: URL > LocalStorage > Default
-            let savedTheme = localStorage.getItem('theme') || 'dark';
-            if (urlTheme && validThemes.includes(urlTheme)) {
-                savedTheme = urlTheme;
-                localStorage.setItem('theme', savedTheme);
-                // Optional: Clean URL
-                const newUrl =
-                    window.location.protocol +
-                    '//' +
-                    window.location.host +
-                    window.location.pathname;
-                window.history.replaceState({ path: newUrl }, '', newUrl);
+            function syncThemeSelector() {
+                const selector = document.getElementById('theme-selector');
+                if (selector) {
+                    selector.value = document.documentElement.getAttribute('data-theme') || 'dark';
+                }
             }
 
-            // Set initial theme
-            document.documentElement.setAttribute('data-theme', savedTheme);
-            themeSelector.value = savedTheme;
+            syncThemeSelector();
 
-            // Handle theme change
-            themeSelector.addEventListener('change', (e) => {
-                const newTheme = e.target.value;
+            document.addEventListener('change', (event) => {
+                if (event.target.id !== 'theme-selector') return;
+
+                const newTheme = event.target.value;
                 document.documentElement.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
+                try {
+                    localStorage.setItem('theme', newTheme);
+                } catch {
+                    // Keep the selected theme for this page when storage is unavailable.
+                }
             });
 
-            // Mobile Menu Logic
-            const hamburger = document.querySelector('.hamburger');
-            const navContent = document.querySelector('.nav-content');
+            document.addEventListener('click', (event) => {
+                if (!(event.target instanceof Element)) return;
 
-            if (hamburger && navContent) {
-                hamburger.addEventListener('click', () => {
+                const hamburger = document.querySelector('.hamburger');
+                const navContent = document.querySelector('.nav-content');
+                if (!hamburger || !navContent) return;
+
+                if (event.target.closest('.hamburger')) {
                     hamburger.classList.toggle('active');
                     navContent.classList.toggle('active');
-                });
-
-                // Close menu when clicking a link
-                document.querySelectorAll('.main-nav a').forEach((link) => {
-                    link.addEventListener('click', () => {
-                        hamburger.classList.remove('active');
-                        navContent.classList.remove('active');
-                    });
-                });
-            }
+                } else if (event.target.closest('.main-nav a')) {
+                    hamburger.classList.remove('active');
+                    navContent.classList.remove('active');
+                }
+            });
 
             // Active Nav Highlighting
             function updateActiveNav() {
@@ -240,11 +254,16 @@
             updateActiveNav();
 
             // Re-run after HTMX navigation (use pushedIntoHistory for correct URL)
-            document.body.addEventListener('htmx:pushedIntoHistory', updateActiveNav);
+            document.addEventListener('htmx:pushedIntoHistory', updateActiveNav);
             // Also listen for afterSwap as fallback
-            document.body.addEventListener('htmx:afterSwap', () => {
+            document.addEventListener('htmx:afterSwap', () => {
                 setTimeout(updateActiveNav, 50);
             });
+            document.addEventListener('htmx:historyRestore', () => {
+                syncThemeSelector();
+                updateActiveNav();
+            });
+            window.addEventListener('pageshow', syncThemeSelector);
         </script>
     </body>
 </html>
