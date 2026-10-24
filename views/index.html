@@ -53,7 +53,7 @@
         ></script>
 
         <!-- CSS -->
-        <link rel="stylesheet" href="css/styles.css?v=16" />
+        <link rel="stylesheet" href="css/styles.css?v=17" />
     </head>
 
     <body>
@@ -193,29 +193,55 @@
             const backgroundGrid = document.querySelector('.background-grid');
             if (
                 backgroundGrid &&
-                window.matchMedia(
-                    '(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)',
-                ).matches
+                window.matchMedia('(prefers-reduced-motion: no-preference)').matches
             ) {
                 let fadeTimeout;
+
+                const revealGrid = (pageX, pageY) => {
+                    backgroundGrid.style.setProperty('--grid-x', `${pageX}px`);
+                    backgroundGrid.style.setProperty('--grid-y', `${pageY}px`);
+                    backgroundGrid.classList.add('is-active');
+                    clearTimeout(fadeTimeout);
+                };
+
+                const fadeGrid = () => {
+                    clearTimeout(fadeTimeout);
+                    fadeTimeout = setTimeout(
+                        () => backgroundGrid.classList.remove('is-active'),
+                        150,
+                    );
+                };
 
                 document.addEventListener(
                     'pointermove',
                     (event) => {
                         if (event.pointerType === 'touch') return;
 
-                        backgroundGrid.style.setProperty('--grid-x', `${event.pageX}px`);
-                        backgroundGrid.style.setProperty('--grid-y', `${event.pageY}px`);
-                        backgroundGrid.classList.add('is-active');
-
-                        clearTimeout(fadeTimeout);
-                        fadeTimeout = setTimeout(
-                            () => backgroundGrid.classList.remove('is-active'),
-                            150,
-                        );
+                        revealGrid(event.pageX, event.pageY);
+                        fadeGrid();
                     },
                     { passive: true },
                 );
+
+                const revealAtTouch = (event) => {
+                    const touch = event.touches[0];
+                    if (touch) revealGrid(touch.pageX, touch.pageY);
+                };
+
+                document.addEventListener('touchstart', revealAtTouch, { passive: true });
+                document.addEventListener('touchmove', revealAtTouch, { passive: true });
+                document.addEventListener(
+                    'touchend',
+                    (event) => {
+                        if (event.touches.length) {
+                            revealAtTouch(event);
+                        } else {
+                            fadeGrid();
+                        }
+                    },
+                    { passive: true },
+                );
+                document.addEventListener('touchcancel', fadeGrid, { passive: true });
             }
 
             function syncThemeSelector() {

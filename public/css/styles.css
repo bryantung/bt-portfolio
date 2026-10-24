@@ -121,7 +121,7 @@ body {
     transition-duration: 120ms;
 }
 
-@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce) {
     .background-grid {
         display: none;
     }
