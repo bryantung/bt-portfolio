@@ -21,6 +21,8 @@ The site uses HTMX links for page transitions and CSS theme variants (`dark`, `l
 
 Experience content has one canonical source and schema: `data/experiences.json`. `render-experiences.js` validates it and generates both visual layouts, so never edit the generated cards/playlist rows individually.
 
+For changes to experience content, schema, or presentation, read and apply the repo-local `experience-update` skill at `.agents/skills/experience-update/SKILL.md`.
+
 To update it without local development tools, edit `data/experiences.json` in GitHub's file editor and commit the change to `main`. The GitHub Pages workflow deploys automatically. Validate the JSON and ensure every experience includes all fields and non-empty `highlights` and `technologies` arrays before committing.
 
 The file is public portfolio content. Do not include secrets, private contact details, client-confidential information, or credentials.
@@ -43,5 +45,7 @@ The file is public portfolio content. Do not include secrets, private contact de
 4. Inspect `git diff` so generated or unrelated local files are not included.
 
 ## Commit and push gate
+
+Before any user-requested commit, push, or deployment, read and apply the repo-local `portfolio-preflight` skill at `.agents/skills/portfolio-preflight/SKILL.md`.
 
 Before staging files for any user-requested commit or push, run `npm run lint` and `npm run build`. Fix task-relevant failures and rerun both checks before committing; if either check cannot pass, do not commit or push. Use a normal commit without `--no-verify`, stage only files in scope, and report any deliberately excluded changes.
