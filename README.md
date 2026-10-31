@@ -2,7 +2,7 @@
 
 A personal portfolio website featuring a hybrid static/SSR (Server-Side Rendering) architecture, dynamic theming, and a unique **"Winamp Classic"** aesthetic interface.
 
-🔗 **[Live Site](https://bryantung.github.io/bt-portfolio)**
+🔗 **[Live Site](https://bryantung.dev/portfolio/)**
 
 ## 🚀 Features
 
@@ -24,7 +24,8 @@ A personal portfolio website featuring a hybrid static/SSR (Server-Side Renderin
 
 ```text
 bt-portfolio/
-├── dist/            # Generated static files (created after build)
+├── dist/            # Domain root, redirect pages, robots.txt, verification file
+│   └── portfolio/   # Generated portfolio pages and static assets
 ├── public/          # Static assets (CSS, JavaScript, Images)
 │   └── css/         # Contains styles.css with theming logic
 ├── data/            # Editable structured content used by the build
@@ -53,13 +54,15 @@ Make sure you have [Node.js](https://nodejs.org/) installed on your machine.
 
 ### Running Locally (Development & SSR)
 
-To start the Express server which serves dynamic pages and handles HTMX requests natively:
+To build and serve the static site:
 
 ```bash
 npm start
 ```
 
-_Note: This will also automatically trigger the build script (`npm run prestart`) and serve the application on `http://localhost:3000`._
+_Note: This also triggers the build script (`npm run prestart`). Open `http://localhost:3000/portfolio/`. The root page redirects there._
+
+For the optional Express renderer, run `node server.js` and open the same path. It supports the same `.html` navigation URLs as the static build, as well as extensionless routes for partial requests.
 
 ### Building a Static Version
 
@@ -69,7 +72,56 @@ If you want to generate a standalone static site that can be hosted on any stati
 npm run build
 ```
 
-This will compile the layouts, partials, and public assets into the `/dist` directory.
+This compiles the layouts, partials, and public assets into `dist/portfolio/`. The artifact root includes fallback redirects for `/` and the previous root-level page URLs, plus `robots.txt` and the Google verification file. Each build removes the previous `dist/` first so old root-level content cannot remain published.
+
+## Custom domain: bryantung.dev
+
+GitHub Pages remains the host. The build publishes a real `portfolio/` directory, so the custom domain serves it at `https://bryantung.dev/portfolio/`. Keep the trailing slash so relative navigation and asset URLs resolve inside that directory. No Worker, repository rename, or additional hosting service is needed.
+
+Set this up in the following order:
+
+1. Deploy this build to GitHub Pages using the existing workflow. The artifact upload path stays `./dist`. Before attaching the domain, check `https://bryantung.github.io/bt-portfolio/portfolio/`.
+2. In your GitHub account's **Settings → Pages**, verify `bryantung.dev` using GitHub's provided TXT record in Cloudflare DNS. Keep this record after verification.
+3. In this repository's **Settings → Pages → Custom domain**, enter `bryantung.dev` (only the hostname). This project uses GitHub Actions deployment, so GitHub does not require or use a `CNAME` file in the artifact.
+4. In Cloudflare **DNS → Records**, add these four `A` records for `@`, initially **DNS only**. Replace conflicting apex web records, preserving email and verification records:
+
+    | Type | Name | Content         |
+    | ---- | ---- | --------------- |
+    | A    | @    | 185.199.108.153 |
+    | A    | @    | 185.199.109.153 |
+    | A    | @    | 185.199.110.153 |
+    | A    | @    | 185.199.111.153 |
+
+5. Wait for GitHub's DNS check and HTTPS certificate, then enable **Enforce HTTPS**. Confirm `https://bryantung.dev/portfolio/` loads correctly while the DNS records are still DNS only.
+6. In Cloudflare, set **SSL/TLS → Overview → Full (strict)**, ensure its edge certificate is active, and switch the four apex records to **Proxied**. Cloudflare redirect rules require proxied traffic.
+7. Under Cloudflare **Rules → Redirect Rules**, create a Single Redirect with a **Custom filter expression**:
+
+    ```text
+    (http.host eq "bryantung.dev" and http.request.uri.path eq "/")
+    ```
+
+    Set the target type to **Static**, target URL to `https://bryantung.dev/portfolio/`, status to **302**, and enable **Preserve query string**. Deploy the rule. Match only `/`, so portfolio pages do not redirect back to themselves. The 302 can be removed when the root gets its own homepage.
+
+GitHub Pages adds the directory slash when visiting `/portfolio`. The generated root HTML is a client-side redirect fallback for local previews and DNS-only access; the Cloudflare rule supplies the actual HTTP 302. The fallback preserves query strings and fragments when JavaScript is enabled. The no-JavaScript fallback still reaches the portfolio.
+
+Verify after setup:
+
+```bash
+curl -I 'https://bryantung.dev/?theme=winamp'
+# Expect 302 with Location: https://bryantung.dev/portfolio/?theme=winamp
+curl -I https://bryantung.dev/portfolio/
+# Expect 200
+curl -I https://bryantung.dev/portfolio/experiences.html
+# Expect 200
+curl -I https://bryantung.dev/portfolio/css/styles.css
+# Expect 200
+curl https://bryantung.dev/robots.txt
+# Expect Sitemap: https://bryantung.dev/portfolio/sitemap.xml
+```
+
+Also check navigation, refresh a nested page, and view all three themes at desktop and mobile sizes. Adding a custom domain makes GitHub redirect the original `github.io` site to the custom domain; it remains the hosting origin, rather than a separate public URL.
+
+References: [GitHub custom domains](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site), [domain verification](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages), and [Cloudflare redirect rules](https://developers.cloudflare.com/rules/url-forwarding/single-redirects/create-dashboard/).
 
 ### Code Quality
 

@@ -2,12 +2,23 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const { renderExperiences } = require('./render-experiences');
-const { PAGE_METADATA, renderSeoMetadata } = require('./seo');
+const { SITE_PATH, PAGE_METADATA, renderSeoMetadata } = require('./seo');
 const app = express();
+app.enable('strict routing');
+const portfolio = express.Router();
 const PORT = process.env.PORT || 3000;
 
 // Serve static files
-app.use(express.static(path.join(__dirname, 'public')));
+portfolio.use(express.static(path.join(__dirname, 'public')));
+for (const filename of ['robots.txt', 'googledf9283629b14cba5.html']) {
+    app.get(`/${filename}`, (req, res) => res.sendFile(path.join(__dirname, 'public', filename)));
+}
+app.get('/', (req, res) =>
+    res.redirect(302, SITE_PATH + new URL(req.originalUrl, 'http://localhost').search),
+);
+app.get(SITE_PATH.slice(0, -1), (req, res) =>
+    res.redirect(302, SITE_PATH + new URL(req.originalUrl, 'http://localhost').search),
+);
 
 // Helper to read partials
 const readView = (viewName) => {
@@ -40,13 +51,13 @@ const routes = [
 ];
 
 routes.forEach((route) => {
-    app.get(route.path, (req, res) => {
+    portfolio.get([route.path, `/${route.metadata.filename}`], (req, res) => {
         let content = readView(route.partial);
         if (route.partial === 'partials/experiences.html') {
             content = renderExperiences(content);
         }
 
-        if (req.headers['hx-request']) {
+        if (req.headers['hx-request'] && !req.path.endsWith('.html')) {
             // If HTMX request, return only the partial
             res.send(content);
         } else {
@@ -55,8 +66,25 @@ routes.forEach((route) => {
             res.send(fullPage);
         }
     });
+    // Keep bookmarks to the previous root-level pages working.
+    app.get(
+        [`/${route.metadata.filename}`, ...(route.path === '/' ? [] : [route.path])],
+        (req, res) =>
+            res.redirect(
+                302,
+                SITE_PATH +
+                    route.metadata.canonicalPath +
+                    new URL(req.originalUrl, 'http://localhost').search,
+            ),
+    );
 });
 
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-});
+app.use(SITE_PATH, portfolio);
+
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`Server running on http://localhost:${PORT}${SITE_PATH}`);
+    });
+}
+
+module.exports = app;

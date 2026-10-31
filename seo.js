@@ -1,4 +1,5 @@
-const SITE_URL = 'https://bryantung.github.io/bt-portfolio/';
+const SITE_URL = 'https://bryantung.dev/portfolio/';
+const SITE_PATH = new URL(SITE_URL).pathname;
 const SOCIAL_PREVIEW_URL = `${SITE_URL}assets/og-preview-personalized.png`;
 const { escapeHtml } = require('./utils/html');
 
@@ -99,4 +100,4 @@ function renderSeoMetadata(page) {
     return metadata.join('\n    ');
 }
 
-module.exports = { PAGE_METADATA, renderSeoMetadata };
+module.exports = { SITE_URL, SITE_PATH, PAGE_METADATA, renderSeoMetadata };

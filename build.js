@@ -1,18 +1,19 @@
 const fs = require('fs');
 const path = require('path');
 const { renderExperiences } = require('./render-experiences');
-const { PAGE_METADATA, renderSeoMetadata } = require('./seo');
+const { SITE_PATH, PAGE_METADATA, renderSeoMetadata } = require('./seo');
+const { renderRedirect } = require('./utils/redirect');
 
 // Configuration
 const DIST_DIR = path.join(__dirname, 'dist');
 const VIEWS_DIR = path.join(__dirname, 'views');
 const PARTIALS_DIR = path.join(VIEWS_DIR, 'partials');
 const PUBLIC_DIR = path.join(__dirname, 'public');
+const PORTFOLIO_DIR = path.join(DIST_DIR, SITE_PATH);
 
-// Ensure dist directory exists
-if (!fs.existsSync(DIST_DIR)) {
-    fs.mkdirSync(DIST_DIR, { recursive: true });
-}
+// Remove files left by the previous root-level build before changing the layout.
+fs.rmSync(DIST_DIR, { recursive: true, force: true });
+fs.mkdirSync(PORTFOLIO_DIR, { recursive: true });
 
 // Helper to copy directory recursively
 function copyDir(src, dest) {
@@ -35,7 +36,11 @@ function copyDir(src, dest) {
 
 // 1. Copy Public Assets
 console.log('Copying public assets...');
-copyDir(PUBLIC_DIR, DIST_DIR);
+copyDir(PUBLIC_DIR, PORTFOLIO_DIR);
+// Crawlers and domain verification request these files at the domain root.
+for (const filename of ['robots.txt', 'googledf9283629b14cba5.html']) {
+    fs.copyFileSync(path.join(PUBLIC_DIR, filename), path.join(DIST_DIR, filename));
+}
 
 // 2. Read Layout Template
 const layout = fs.readFileSync(path.join(VIEWS_DIR, 'index.html'), 'utf8');
@@ -71,7 +76,9 @@ pages.forEach((page) => {
         .replace('<!-- SEO_METADATA -->', renderSeoMetadata(page.metadata))
         .replace('<!-- CONTENT_PLACEHOLDER -->', content);
 
-    fs.writeFileSync(path.join(DIST_DIR, page.metadata.filename), fullHtml);
+    fs.writeFileSync(path.join(PORTFOLIO_DIR, page.metadata.filename), fullHtml);
+    const destination = `${SITE_PATH.slice(1)}${page.metadata.canonicalPath}`;
+    fs.writeFileSync(path.join(DIST_DIR, page.metadata.filename), renderRedirect(destination));
     console.log(`Generated ${page.metadata.filename}`);
 });
 
