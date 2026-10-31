@@ -4,8 +4,24 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- SEO_METADATA -->
+        <link
+            id="theme-favicon"
+            rel="icon"
+            type="image/svg+xml"
+            href="assets/bt-favicon-dark.svg"
+        />
 
         <script>
+            function applyTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                document
+                    .getElementById('theme-favicon')
+                    .setAttribute(
+                        'href',
+                        `assets/bt-favicon-${theme === 'light' ? 'light' : 'dark'}.svg`,
+                    );
+            }
+
             (() => {
                 const validThemes = ['dark', 'light', 'winamp'];
                 const url = new URL(window.location.href);
@@ -23,7 +39,7 @@
                     : validThemes.includes(storedTheme)
                       ? storedTheme
                       : 'dark';
-                document.documentElement.setAttribute('data-theme', theme);
+                applyTheme(theme);
 
                 if (validThemes.includes(urlTheme)) {
                     try {
@@ -53,7 +69,7 @@
         ></script>
 
         <!-- CSS -->
-        <link rel="stylesheet" href="css/styles.css?v=17" />
+        <link rel="stylesheet" href="css/styles.css?v=22" />
     </head>
 
     <body>
@@ -62,7 +78,23 @@
         <span class="background-ruler" aria-hidden="true"></span>
         <div class="app-container">
             <header class="main-header">
-                <div class="logo">BT Portfolio.</div>
+                <div class="logo">
+                    <img
+                        class="logo-icon logo-icon-dark"
+                        src="assets/bt-favicon-dark.svg"
+                        alt=""
+                        width="48"
+                        height="48"
+                    />
+                    <img
+                        class="logo-icon logo-icon-light"
+                        src="assets/bt-favicon-light.svg"
+                        alt=""
+                        width="48"
+                        height="48"
+                    />
+                    <span>Portfolio</span>
+                </div>
                 <button class="hamburger" aria-label="Toggle Menu">
                     <span></span>
                     <span></span>
@@ -257,7 +289,7 @@
                 if (event.target.id !== 'theme-selector') return;
 
                 const newTheme = event.target.value;
-                document.documentElement.setAttribute('data-theme', newTheme);
+                applyTheme(newTheme);
                 try {
                     localStorage.setItem('theme', newTheme);
                 } catch {

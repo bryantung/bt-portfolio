@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="bT developer favicon dark theme">
+  <rect width="512" height="512" rx="80" fill="#0C111B"/>
+  <!-- Terminal prompt: half the lowercase b height -->
+  <path d="M27 246 L70 269 L27 292" fill="none" stroke="#16E956" stroke-width="16" stroke-linecap="square" stroke-linejoin="miter"/>
+  <!-- Lowercase b, approximately two thirds of T height -->
+  <path d="M112 190 V350" fill="none" stroke="#FFFFFF" stroke-width="29"/>
+  <circle cx="159" cy="288" r="48" fill="none" stroke="#FFFFFF" stroke-width="29"/>
+  <!-- Uppercase T, primary identity -->
+  <path d="M246 139 H397" fill="none" stroke="#FFFFFF" stroke-width="39" stroke-linecap="butt"/>
+  <path d="M321.5 139 V351" fill="none" stroke="#FFFFFF" stroke-width="39" stroke-linecap="butt"/>
+  <!-- Blue colon -->
+  <circle cx="455" cy="243" r="20" fill="#229FF5"/>
+  <circle cx="455" cy="321" r="20" fill="#229FF5"/>
+</svg>

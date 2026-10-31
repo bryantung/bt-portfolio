@@ -14,6 +14,7 @@
     --nav-glass: rgb(23 25 26 / 92%);
     --canvas-edge: rgb(255 255 255 / 2%);
     --grid-line: rgb(88 166 255 / 20%);
+    --header-height: 5.5rem;
 
     /* Typography */
     --font-main: 'Outfit', sans-serif;
@@ -105,7 +106,7 @@ body {
         linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
         linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
     background-size: 34px 34px;
-    background-position: var(--ruler-left) 5.5rem;
+    background-position: var(--ruler-left) var(--header-height);
     mask-image: radial-gradient(
         circle 140px at var(--grid-x, 50%) var(--grid-y, 50%),
         #000 0%,
@@ -130,7 +131,7 @@ body {
 .background-ruler {
     position: absolute;
     z-index: 0;
-    top: 5.5rem;
+    top: var(--header-height);
     bottom: 6rem;
     left: var(--ruler-left);
     width: 26px;
@@ -198,7 +199,8 @@ ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 2rem;
+    padding: 0.5rem 2rem;
+    min-height: var(--header-height);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -208,10 +210,29 @@ ul {
 }
 
 .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
     font-size: 1.5rem;
     font-weight: 700;
     letter-spacing: -0.5px;
     color: var(--text-primary);
+}
+
+.logo-icon {
+    display: block;
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+}
+
+.logo-icon-light,
+[data-theme='light'] .logo-icon-dark {
+    display: none;
+}
+
+[data-theme='light'] .logo-icon-light {
+    display: block;
 }
 
 .nav-content {
@@ -1176,7 +1197,7 @@ html:not([data-theme='winamp']) #main-content:has(> .home-hero) {
     align-items: center;
     flex-grow: 1;
     gap: 8px;
-    justify-content: center;
+    justify-content: flex-start;
     position: relative;
     color: #e2e0ca;
     font-family: Arial, sans-serif;
@@ -1185,9 +1206,14 @@ html:not([data-theme='winamp']) #main-content:has(> .home-hero) {
     letter-spacing: 1px;
 }
 
-[data-theme='winamp'] .logo::before,
+[data-theme='winamp'] .logo-icon {
+    width: 24px;
+    height: 24px;
+}
+
 [data-theme='winamp'] .logo::after {
     content: '';
+    flex-grow: 1;
     height: 10px;
     background: linear-gradient(
         to bottom,
@@ -1202,22 +1228,6 @@ html:not([data-theme='winamp']) #main-content:has(> .home-hero) {
         #827d62 80%,
         #827d62 100%
     );
-}
-
-[data-theme='winamp'] .logo::before {
-    flex-grow: 1;
-}
-
-[data-theme='winamp'] .logo::after {
-    flex-grow: 1;
-}
-
-[data-theme='winamp'] .main-header::before {
-    content: '⚡';
-    color: #e2e0ca;
-    margin-right: -4px;
-    font-size: 14px;
-    z-index: 10;
 }
 
 /* Navigation items mimicking window buttons */
